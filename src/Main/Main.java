@@ -21,7 +21,6 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         try {
 
-            //setUserAgentStylesheet(STYLESHEET_CASPIAN);
             setUserAgentStylesheet(STYLESHEET_MODENA);
 
             
