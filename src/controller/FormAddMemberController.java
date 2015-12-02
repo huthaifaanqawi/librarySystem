@@ -80,15 +80,7 @@ public class FormAddMemberController extends FormBaseController {
     }
     
     public void addMember(){
-        LibraryMember member = new LibraryMember();
-        member.setFirstName(firstName.getText());
-        member.setLastName(lastName.getText());
-        member.setPhoneNumber(phoneNumber.getText());
-        member.setState((String)state.getValue());
-        member.setCity((String)city.getValue());
-        member.setStreet((String)street.getText());
-        member.setZip((String)zip.getText());
-        memberDAO.addMember(member);
+        
     }
 
 }
