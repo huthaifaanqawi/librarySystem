@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import util.util;
 import Main.Main;
+import javafx.application.Platform;
 
 /**
  * FXML Controller class
@@ -46,6 +47,8 @@ public class FormMainController implements Initializable {
     @FXML
     public Button logoffButton;
 
+    @FXML
+    public Button closeButton;
     
     /**
      * Initializes the controller class.
@@ -73,6 +76,17 @@ public class FormMainController implements Initializable {
 
         
     }
+
+    @FXML
+    public void handleCloseButtonAction(ActionEvent event) {
+
+        
+        util.log("Finishing application");
+        
+        Platform.exit();
+        
+    }
+
     
     private void launchForm(String formURL) {
          
@@ -94,6 +108,7 @@ public class FormMainController implements Initializable {
             stage.setScene(scene);
 
             stage.setResizable(false);
+            stage.setAlwaysOnTop(true);
 
             util.log("Showing " + formURL +  " form");
             stage.show();
