@@ -24,7 +24,7 @@ import model.LibraryMember;
 public class FormAddMemberController extends FormBaseController {
 
     @FXML
-    private ComboBox country;
+    private ComboBox state;
     
     @FXML
     private ComboBox city;
@@ -40,14 +40,20 @@ public class FormAddMemberController extends FormBaseController {
     
     @FXML
     private Button add;
+    
+    @FXML
+    private TextField street;
+    
+    @FXML
+    private TextField zip;
 
     private MemberDAO memberDAO;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        country.getItems().clear();
+        state.getItems().clear();
 
-        country.getItems().addAll(
+        state.getItems().addAll(
                 "Palestine",
                 "Germany",
                 "British",
@@ -78,8 +84,10 @@ public class FormAddMemberController extends FormBaseController {
         member.setFirstName(firstName.getText());
         member.setLastName(lastName.getText());
         member.setPhoneNumber(phoneNumber.getText());
-        member.setCountry((String)country.getValue());
+        member.setState((String)state.getValue());
         member.setCity((String)city.getValue());
+        member.setStreet((String)street.getText());
+        member.setZip((String)zip.getText());
         memberDAO.addMember(member);
     }
 

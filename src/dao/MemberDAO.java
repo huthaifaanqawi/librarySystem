@@ -17,7 +17,9 @@ public class MemberDAO {
         System.out.println("First Name:"+libraryMember.getFirstName());
         System.out.println("last Name:"+libraryMember.getLastName());
         System.out.println("phone Number:"+libraryMember.getPhoneNumber());
-        System.out.println("Country:"+libraryMember.getCountry());
+        System.out.println("State:"+libraryMember.getState());
         System.out.println("City:"+libraryMember.getCity());
+        System.out.println("zip:"+libraryMember.getZip());
+        System.out.println("street:"+libraryMember.getStreet());
     }
 }
