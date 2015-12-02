@@ -52,12 +52,12 @@ public class FormCheckoutRecordDetailController extends FormBaseController {
     
     public void editCheckoutRecord(){
         CheckoutRecord checkoutRecord = new CheckoutRecord();
-        checkoutRecord.setId(id.getText());
+        /*checkoutRecord.setId(id.getText());
         checkoutRecord.setFirstName(firstName.getText());
         checkoutRecord.setLastName(lastName.getText());
         checkoutRecord.setISBN(isbn.getText());
         checkoutRecord.setTitle(title.getText());
-        checkoutRecord.setAuthors(author.getText());
+        checkoutRecord.setAuthors(author.getText());*/
         checkoutRecordDAO.editCheckoutRecord(checkoutRecord);
     }
     

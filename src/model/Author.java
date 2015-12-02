@@ -1,7 +1,7 @@
 package model;
 
 public class Author extends Person {
-
+    
 	private String bio;
 	private String credential;
 

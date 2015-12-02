@@ -3,7 +3,9 @@ package model;
 import java.util.Date;
 
 public class Fine {
-
+    
+    
+        private int id;
 	private Date fineDate;
 	private double amount;
 

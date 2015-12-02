@@ -9,7 +9,7 @@ package model;
  *
  * @author win7
  */
-public class LibraryMember extends Person{
+public class LibraryMember extends Person{ 
     
     
 }

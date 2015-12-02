@@ -5,73 +5,41 @@
  */
 package model;
 
+import java.util.List;
+
 /**
  *
  * @author 984894
  */
 public class CheckoutRecord {
     
-    private String id;
-    private String firstName;
-    private String lastName;
-    private String ISBN;
-    private String title;
-    private String authors;
-    private String date;
+    private int id;    
+    private LibraryMember libraryMember;
+    private List<CheckoutEntry> checkoutEntries;//ChecoutRecord consists of many of entries 
+    private List<Fine> fines;   
 
-    public String getId() {
-        return id;
+    public LibraryMember getLibraryMember() {
+        return libraryMember;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setLibraryMember(LibraryMember libraryMember) {
+        this.libraryMember = libraryMember;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public List<CheckoutEntry> getCheckoutEntries() {
+        return checkoutEntries;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setCheckoutEntries(List<CheckoutEntry> checkoutEntries) {
+        this.checkoutEntries = checkoutEntries;
     }
 
-    public String getLastName() {
-        return lastName;
+    public List<Fine> getFines() {
+        return fines;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setFines(List<Fine> fines) {
+        this.fines = fines;
     }
-
-    public String getISBN() {
-        return ISBN;
-    }
-
-    public void setISBN(String ISBN) {
-        this.ISBN = ISBN;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getAuthors() {
-        return authors;
-    }
-
-    public void setAuthors(String authors) {
-        this.authors = authors;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
+    
 }
