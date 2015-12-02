@@ -1,4 +1,4 @@
-package LibrarySystem;
+package model;
 
 public class BookCopy {
 
