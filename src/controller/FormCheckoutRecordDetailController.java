@@ -47,13 +47,7 @@ public class FormCheckoutRecordDetailController extends FormBaseController {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         checkoutRecordDAO = new CheckoutRecordDAO();
-        editBtn.setOnAction(new EventHandler<ActionEvent>() {
 
-            @Override
-            public void handle(ActionEvent event) {
-                editCheckoutRecord();
-            }
-        });
     }
     
     public void editCheckoutRecord(){

@@ -23,7 +23,7 @@
         </rowConstraints>
          <children>
             <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#handleCancelButtonAction" text="OK" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Button mnemonicParsing="false" text="Export" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Button fx:id="export" mnemonicParsing="false" text="Export" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
       <GridPane layoutX="143.0" layoutY="14.0" prefHeight="93.0" prefWidth="580.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
@@ -45,16 +45,16 @@
             </Text>
             <Label text="Member" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
             <Label text="Book" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <ChoiceBox prefHeight="26.0" prefWidth="185.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
-            <ChoiceBox prefHeight="26.0" prefWidth="228.0" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
+            <ChoiceBox fx:id="member" prefHeight="26.0" prefWidth="185.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+            <ChoiceBox fx:id="book" prefHeight="26.0" prefWidth="228.0" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <TableView layoutX="14.0" layoutY="100.0" prefHeight="244.0" prefWidth="580.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+      <TableView fx:id="tableView" layoutX="14.0" layoutY="100.0" onMouseClicked="#handleTableViewClickAction" prefHeight="244.0" prefWidth="580.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
         <columns>
           <TableColumn prefWidth="171.0" text="Member" />
           <TableColumn maxWidth="1.7976931348623157E308" prefWidth="194.0" text="Book" />
-            <TableColumn maxWidth="100.0" prefWidth="107.0" text="Checkout Date" />
-            <TableColumn maxWidth="100.0" prefWidth="107.0" text="Return Date" />
+            <TableColumn maxWidth="112.0" prefWidth="112.0" text="Checkout Date" />
+            <TableColumn maxWidth="100.0" prefWidth="88.0" text="Return Date" />
         </columns>
       </TableView>
    </children>
