@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -19,6 +20,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -54,55 +56,74 @@ public class FormCheckoutRecordController extends FormBaseController {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        List checkoutRecords = new ArrayList<String>();
-        CheckoutRecord cr = new CheckoutRecord();
-        cr.setFirstName("mauro");
-        cr.setDate("10-08-2015");
-        cr.setISBN("123");
-        checkoutRecords.add(cr);
-        tableView.getItems().addAll(FXCollections.observableList(checkoutRecords));
+        
+        loadTableView();
+
         tableView.getSelectionModel().selectedItemProperty()
                         .addListener((observable, oldValue, newValue) -> handleTableViewDoubleClickAction());
         
     }    
     
     
+    public void loadTableView() {
+        List checkoutRecords = new ArrayList<String>();
+        CheckoutRecord cr = new CheckoutRecord();
+        /*cr.setFirstName("Mauro");
+        cr.setDate("10-08-2015");
+        cr.setISBN("123");
+        checkoutRecords.add(cr);
+        
+        CheckoutRecord cr2 = new CheckoutRecord();
+        cr.setFirstName("Mauro");
+        cr.setDate("10-01-2015");
+        cr.setISBN("345");
+        checkoutRecords.add(cr);
+
+        tableView.getItems().addAll(FXCollections.observableList(checkoutRecords));
+*/
+    }
+    
     
     public void handleTableViewDoubleClickAction() {
 
         tableView.setOnMousePressed((MouseEvent event) -> {
             if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
-                System.out.println(tableView.getSelectionModel().getSelectedItem());
-        
+                
+                int rowIndex = tableView.getSelectionModel().getSelectedIndex();
+                ObservableList rowList = (ObservableList) tableView.getItems().get(rowIndex);   
+                
+                
+                //Retrieving CheckoutID
+                String checkoutKey = rowList.get(0).toString();
+                
+                
+                        
                 Stage stage = new Stage();
 
                 util.log("Loading detailed record form...");
 
-                //if(mouseEvent.getClickCount() == 2) 
-                { 
-                    try {
-                        String formURL = "FormCheckoutRecordDetails.fxml";
+                try {
+                    String formURL = "FormCheckoutRecordDetails.fxml";
 
-                        Parent root = FXMLLoader.load(getClass().getResource("/view/" + formURL));
+                    Parent root = FXMLLoader.load(getClass().getResource("/view/" + formURL));
 
-                        root.setStyle("-fx-background-color:  #8EC6E7");
+                    root.setStyle("-fx-background-color:  #8EC6E7");
 
-                        util.log("Loading " + formURL);
-                        Scene scene = new Scene(root);
+                    util.log("Loading " + formURL);
+                    Scene scene = new Scene(root);
 
-                        util.log("Setting scene stage");
-                        stage.setScene(scene);
+                    util.log("Setting scene stage");
+                    stage.setScene(scene);
 
-                        stage.setResizable(false);
+                    stage.setResizable(false);
+                    stage.setAlwaysOnTop(true);
 
-                        util.log("Showing " + formURL);
-                        stage.show();
+                    util.log("Showing " + formURL);
+                    stage.show();
 
-                    } catch(Exception e) {
-                        e.printStackTrace();
+                } catch(Exception e) {
+                    e.printStackTrace();
                     }
-                }
             }
         });
 
