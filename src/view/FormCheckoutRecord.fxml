@@ -49,12 +49,28 @@
             <ChoiceBox fx:id="book" prefHeight="26.0" prefWidth="228.0" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <TableView fx:id="tableView" layoutX="14.0" layoutY="100.0" onMouseClicked="#handleTableViewClickAction" prefHeight="244.0" prefWidth="580.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+      <TableView fx:id="tableView" layoutX="14.0" layoutY="100.0" onSort="#handleTableViewDoubleClickAction" prefHeight="244.0" prefWidth="580.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
         <columns>
-          <TableColumn prefWidth="171.0" text="Member" />
-          <TableColumn maxWidth="1.7976931348623157E308" prefWidth="194.0" text="Book" />
-            <TableColumn maxWidth="112.0" prefWidth="112.0" text="Checkout Date" />
-            <TableColumn maxWidth="100.0" prefWidth="88.0" text="Return Date" />
+            <TableColumn prefWidth="171.0" text="Member" >
+                <cellValueFactory>
+                      <javafx.scene.control.cell.PropertyValueFactory property="firstName"/> 
+              </cellValueFactory>
+            </TableColumn>
+          <TableColumn maxWidth="1.7976931348623157E308" prefWidth="194.0" text="Book">
+              <cellValueFactory>
+                      <javafx.scene.control.cell.PropertyValueFactory property="ISBN"/> 
+              </cellValueFactory>
+          </TableColumn>
+          <TableColumn maxWidth="112.0" prefWidth="112.0" text="Checkout Date" >
+              <cellValueFactory>
+                      <javafx.scene.control.cell.PropertyValueFactory property="date"/> 
+              </cellValueFactory>
+          </TableColumn>
+          <TableColumn maxWidth="100.0" prefWidth="88.0" text="Return Date">
+              <cellValueFactory>
+                      <javafx.scene.control.cell.PropertyValueFactory property="date"/> 
+              </cellValueFactory>
+          </TableColumn>
         </columns>
       </TableView>
    </children>

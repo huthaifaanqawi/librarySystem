@@ -6,17 +6,24 @@
 package controller;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import util.util;
+import model.CheckoutRecord;
 
 /**
  * FXML Controller class
@@ -39,48 +46,66 @@ public class FormCheckoutRecordController extends FormBaseController {
     @FXML
     private Button ok;
     
+    private CheckoutRecord checkoutRecord = new CheckoutRecord();
+    
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        List checkoutRecords = new ArrayList<String>();
+        CheckoutRecord cr = new CheckoutRecord();
+        cr.setFirstName("mauro");
+        cr.setDate("10-08-2015");
+        cr.setISBN("123");
+        checkoutRecords.add(cr);
+        tableView.getItems().addAll(FXCollections.observableList(checkoutRecords));
         tableView.getSelectionModel().selectedItemProperty()
-                        .addListener((observable, oldValue, newValue) -> handleTableViewClickAction());
+                        .addListener((observable, oldValue, newValue) -> handleTableViewDoubleClickAction());
+        
     }    
     
     
     
-    public void handleTableViewClickAction() {
+    public void handleTableViewDoubleClickAction() {
 
-        Stage stage = new Stage();
+        tableView.setOnMousePressed((MouseEvent event) -> {
+            if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+                System.out.println(tableView.getSelectionModel().getSelectedItem());
         
-        util.log("Loading detailed record form...");
-        
-        //if(mouseEvent.getClickCount() == 2) 
-        { 
-            try {
-                String formURL = "FormCheckoutRecordDetails.fxml";
+                Stage stage = new Stage();
 
-                Parent root = FXMLLoader.load(getClass().getResource("/view/" + formURL));
+                util.log("Loading detailed record form...");
 
-                root.setStyle("-fx-background-color:  #8EC6E7");
+                //if(mouseEvent.getClickCount() == 2) 
+                { 
+                    try {
+                        String formURL = "FormCheckoutRecordDetails.fxml";
 
-                util.log("Loading " + formURL);
-                Scene scene = new Scene(root);
+                        Parent root = FXMLLoader.load(getClass().getResource("/view/" + formURL));
 
-                util.log("Setting scene stage");
-                stage.setScene(scene);
+                        root.setStyle("-fx-background-color:  #8EC6E7");
 
-                stage.setResizable(false);
+                        util.log("Loading " + formURL);
+                        Scene scene = new Scene(root);
 
-                util.log("Showing " + formURL);
-                stage.show();
+                        util.log("Setting scene stage");
+                        stage.setScene(scene);
 
-            } catch(Exception e) {
-                e.printStackTrace();
+                        stage.setResizable(false);
+
+                        util.log("Showing " + formURL);
+                        stage.show();
+
+                    } catch(Exception e) {
+                        e.printStackTrace();
+                    }
+                }
             }
-        }
+        });
+
     }
    
     
