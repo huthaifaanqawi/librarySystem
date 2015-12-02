@@ -16,7 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import util.util;
-import library.Main;
+import Main.Main;
 
 /**
  * FXML Controller class
@@ -83,7 +83,10 @@ public class FormMainController implements Initializable {
             util.log("Starting " + formURL + "...");
             util.log("Setting FXML file");
             Parent root = FXMLLoader.load(getClass().getResource(formURL));
+            
+            root.setStyle("-fx-background-color:  #8EC6E7");
 
+            
             util.log("Loading scene");
             Scene scene = new Scene(root);
 

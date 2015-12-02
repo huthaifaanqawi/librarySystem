@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package library;
+package Main;
 
 
 import javafx.application.Application;
@@ -21,9 +21,15 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         try {
 
+            //setUserAgentStylesheet(STYLESHEET_CASPIAN);
+            setUserAgentStylesheet(STYLESHEET_MODENA);
+
+            
             util.log("Starting application...");
             util.log("Setting FXML file for Login screen");
             Parent root = FXMLLoader.load(getClass().getResource("/view/FormLogin.fxml"));
+            
+            root.setStyle("-fx-background-color:  #8EC6E7");
 
             util.log("Loading FXML scene");
             Scene scene = new Scene(root);

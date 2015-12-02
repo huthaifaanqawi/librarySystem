@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -9,22 +10,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" minHeight="400.0" minWidth="550.0" prefHeight="400.0" prefWidth="550.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FormMainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #8EC6E7;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FormMainController">
     <stylesheets>
         <URL value="@system.css" />
     </stylesheets>
    <children>
       <Pane prefHeight="400.0" prefWidth="550.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-         <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutY="-1.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="97.0" prefWidth="550.0" text="Library System" textAlignment="CENTER">
-               <font>
-                  <Font size="36.0" />
-               </font>
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-            </Label>
-         </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
@@ -35,21 +26,14 @@
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="550.0" minWidth="0.0" prefWidth="274.0" />
         </columnConstraints>
         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="checkoutButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleCheckoutButtonAction" prefHeight="61.0" prefWidth="279.0" text="Checkout" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-               <font>
-                  <Font size="24.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="DEFAULT" />
-               </cursor>
-            </Button>
-            <Button fx:id="checkoutRecordButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleCheckoutRecordButtonAction" prefHeight="61.0" prefWidth="302.0" text="Checkout Record" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Button fx:id="checkoutButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleCheckoutButtonAction" prefHeight="70.0" prefWidth="310.0" text="Checkout" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <font>
                   <Font size="24.0" />
                </font>
@@ -57,7 +41,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="addMemberButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleAddMemberButtonAction" prefHeight="61.0" prefWidth="303.0" text="Add Member" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <Button fx:id="checkoutRecordButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleCheckoutRecordButtonAction" prefHeight="70.0" prefWidth="310.0" text="Checkout Record" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <font>
                   <Font size="24.0" />
                </font>
@@ -65,7 +49,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="editMemberButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleEditMemberButtonAction" prefHeight="61.0" prefWidth="341.0" text="Edit Member" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <Button fx:id="addMemberButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleAddMemberButtonAction" prefHeight="70.0" prefWidth="310.0" text="Add Member" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <font>
                   <Font size="24.0" />
                </font>
@@ -73,7 +57,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="addBookButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleAddBookButtonAction" prefHeight="61.0" prefWidth="302.0" text="Add Book" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <Button fx:id="editMemberButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleEditMemberButtonAction" prefHeight="70.0" prefWidth="310.0" text="Edit Member" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <font>
                   <Font size="24.0" />
                </font>
@@ -81,7 +65,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="addBookCopyButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleAddBookCopyButtonAction" prefHeight="61.0" prefWidth="310.0" text="Add Book Copy" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <Button fx:id="addBookButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleAddBookButtonAction" prefHeight="70.0" prefWidth="310.0" text="Add Book" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <font>
                   <Font size="24.0" />
                </font>
@@ -89,7 +73,26 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="logoffButton" mnemonicParsing="false" onAction="#handleLogoffButtonAction" prefHeight="32.0" prefWidth="90.0" text="Logoff" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+            <Button fx:id="addBookCopyButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleAddBookCopyButtonAction" prefHeight="70.0" prefWidth="310.0" text="Add Book Copy" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="logoffButton" mnemonicParsing="false" onAction="#handleLogoffButtonAction" prefHeight="35.0" prefWidth="135.0" text="Logoff" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Label alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="137.0" prefWidth="1110.0" text="Library System" textAlignment="CENTER" GridPane.columnSpan="2">
+               <font>
+                  <Font size="36.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </Label>
          </children>
          <opaqueInsets>
             <Insets />

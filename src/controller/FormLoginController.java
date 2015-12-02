@@ -16,7 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import library.Main;
+import Main.Main;
 import util.util;
 import static javafx.application.Application.launch;
 import static javafx.application.Application.launch;
