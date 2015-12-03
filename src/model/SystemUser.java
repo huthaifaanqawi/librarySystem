@@ -1,7 +1,10 @@
 package model;
 
 //SystemUser can be Admin or Librarian
-public class SystemUser {    
+
+import java.io.Serializable;
+
+public class SystemUser implements Serializable {    
     
     public enum AuthorizationLevel {ADMINISTRATOR, LIBRARIAN};
     

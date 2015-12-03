@@ -7,11 +7,13 @@ package Main;
 
 
 import dao.SystemUserDAO;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import model.SystemUser;
 import util.*;
@@ -34,7 +36,11 @@ public class Main extends Application {
         
         SystemUserDAO adminDAO = new SystemUserDAO();
         
-        //adminDAO.addUser(admin);
+        try {
+            adminDAO.addUser(admin);
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         
         try {

@@ -10,6 +10,6 @@ package dao;
  * @author 984959
  */
 public interface IStoragePath {
-    String OUTPUT_DIR = System.getProperty("user.dir") +  "\\storage\\";
+    String OUTPUT_DIR = System.getProperty("user.dir") +  "/storage/";
     
 }

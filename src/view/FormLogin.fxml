@@ -27,12 +27,12 @@
          <children>
             <Label alignment="CENTER" prefHeight="68.0" prefWidth="217.0" text="Username" />
             <Label alignment="CENTER" prefHeight="73.0" prefWidth="214.0" text="Password" textAlignment="CENTER" GridPane.rowIndex="1" />
-            <TextField prefHeight="26.0" prefWidth="266.0" GridPane.columnIndex="1">
+            <TextField fx:id="userNameField" prefHeight="26.0" prefWidth="266.0" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets left="20.0" right="20.0" />
                </GridPane.margin>
             </TextField>
-            <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="20.0" right="20.0" />
                </GridPane.margin>
