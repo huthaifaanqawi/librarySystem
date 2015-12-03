@@ -56,14 +56,7 @@ public class FormCheckoutRecordDetailController implements Initializable {
     }
     
     public void editCheckoutRecord(){
-        CheckoutRecord checkoutRecord = new CheckoutRecord();
-        /*checkoutRecord.setId(id.getText());
-        checkoutRecord.setFirstName(firstName.getText());
-        checkoutRecord.setLastName(lastName.getText());
-        checkoutRecord.setISBN(isbn.getText());
-        checkoutRecord.setTitle(title.getText());
-        checkoutRecord.setAuthors(author.getText());*/
-        checkoutRecordDAO.editCheckoutRecord(checkoutRecord);
+        
     }
     
     

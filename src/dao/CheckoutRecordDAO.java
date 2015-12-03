@@ -13,7 +13,15 @@ import model.CheckoutRecord;
  */
 public class CheckoutRecordDAO {
     
-    public void editCheckoutRecord(CheckoutRecord checkoutRecord){
+    public void addCheckoutEntry(CheckoutRecord checkoutRecord){
+        
+    }
+    
+    public CheckoutRecord getCheckoutRecord(){
+        return null;
+    }
+    
+    public void addCheckoutRecord(CheckoutRecord checkoutRecord){
         
     }
 }

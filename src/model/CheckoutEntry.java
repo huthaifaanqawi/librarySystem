@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class CheckoutEntry {
+public class CheckoutEntry implements Serializable{
 
     private String id;//same as database id
     private Date checkoutDate;

@@ -7,6 +7,7 @@ package controller;
 
 import controller.SaveFormBaseController;
 import dao.MemberDAO;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -15,7 +16,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import model.Address;
 import model.LibraryMember;
+import util.Message;
 
 /**
  *
@@ -68,18 +71,24 @@ public class FormAddMemberController extends SaveFormBaseController {
                 "Jenin",
                 "Haifa",
                 "Jaffa");
-
-        add.setOnAction(new EventHandler<ActionEvent>(){
-            @Override
-            public void handle(ActionEvent event) {
-                addMember();
-            }  
-        });
         
         memberDAO = new MemberDAO();
     }
     
-    public void addMember(){
+    @FXML
+    private void addMember(ActionEvent event) {
+        LibraryMember libraryMember = new LibraryMember();
+        libraryMember.setFirstName(firstName.getText());
+        libraryMember.setLastName(lastName.getText());
+        libraryMember.setPhoneNumber(phoneNumber.getText());
+        libraryMember.setAddress(new Address(street.getText(),city.getValue().toString(),state.getValue().toString(),zip.getText()));
+        try {
+            memberDAO.addMember(libraryMember);
+            Message.showSuccessMessage("Add Member", "Saving Member Sucess", "");            
+        } catch (IOException ex) {
+            Message.showErrorMessage("Add Member", "Saving Member Failed. Exception message: ",  ex.getMessage());          
+            
+        }
         
     }
 

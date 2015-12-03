@@ -66,15 +66,14 @@ public class FormCheckoutRecordController extends SaveFormBaseController {
     public void initialize(URL url, ResourceBundle rb) {
 
         loadTableView();
-
         tableView.getSelectionModel().selectedItemProperty()
                 .addListener((observable, oldValue, newValue) -> handleTableViewDoubleClickAction());
 
     }
     
     public void loadTableView() {
-        CheckoutRecord cr = new CheckoutRecord();
-        ArrayList<LibraryMember> members = memberDAO.getAllLibraryMembers();
+        /*CheckoutRecord cr = new CheckoutRecord();
+        List<LibraryMember> members = memberDAO.getAllLibraryMembers();
         List<CheckoutEntry> entries = new ArrayList<>();
         for (int i = 0; i < members.size(); i++) {
             entries.addAll(members.get(i).getCheckoutRecord().getCheckoutEntries());
@@ -126,7 +125,12 @@ public class FormCheckoutRecordController extends SaveFormBaseController {
                 };
                 return cell;
             }
-        });
+        });*/
+    }
+    
+    @FXML
+    public void handleSaveButtonAction(ActionEvent event){
+        
     }
 
     public void handleTableViewDoubleClickAction() {

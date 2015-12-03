@@ -13,14 +13,14 @@ import java.util.List;
 public class DataAccessUtil {
 
     //parameters dir: the output directory, name: the file name that should contain the object data
-    public static void saveObject(String dir, String name, Object objToSave) {
+    public static void saveObject(String dir, String name, Object objToSave) throws IOException{
         ObjectOutputStream out = null;
         try {
             Path path = FileSystems.getDefault().getPath(dir, name);
             out = new ObjectOutputStream(Files.newOutputStream(path));
             out.writeObject(objToSave);
         } catch (IOException e) {
-            e.printStackTrace();//it should be handled in different way (return error) message, or for this project it is ok to do this action
+            throw e;//;.printStackTrace();//it should be handled in different way (return error) message, or for this project it is ok to do this action
         } finally {
             if (out != null) {
                 try {

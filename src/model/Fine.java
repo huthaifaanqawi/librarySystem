@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Fine {
+public class Fine implements Serializable{
     
     
         private int id;

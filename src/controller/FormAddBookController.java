@@ -6,8 +6,13 @@
 package controller;
 
 import dao.BookDao;
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -15,7 +20,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import model.Book;
+import model.BookCopy;
 import util.FieldValidator;
+import util.Message;
 
 /**
  * FXML Controller class
@@ -82,17 +89,31 @@ public class FormAddBookController extends SaveFormBaseController {
         Book book = new Book();
         book.setIsbn(txtISBN.getText());
         book.setTitle(txtTitle.getText());
-        //bo
+        List<BookCopy> copiesList = new ArrayList<BookCopy>();
+        BookCopy c1 = new BookCopy();
+        c1.setCopynumber("123123");
+        copiesList.add(c1);
+        
+        BookCopy c2 = new BookCopy();
+        c2.setCopynumber("222333");
+        copiesList.add(c2);
+        
+        book.setCopies(copiesList);
+        
+     
         
         BookDao bookDao = new BookDao();
-        Boolean saveResult = bookDao.addBook(book);
-        if (!saveResult) {
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Error Dialog");
-            alert.setHeaderText("Saving Book Failed");           
-            alert.showAndWait();
-            return;
+       
+        try {
+            bookDao.addBook(book);
+            Message.showSuccessMessage("Add Book", "Saving Book Sucess", "");            
+        } catch (IOException ex) {
+            Message.showErrorMessage("Add Book", "Saving Book Failed. Exception message: ",  ex.getMessage());          
+            
         }
+        
+        
+        
     }
     
     

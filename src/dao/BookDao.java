@@ -5,8 +5,10 @@
  */
 package dao;
 
+import java.io.IOException;
 import java.util.List;
 import model.Book;
+import model.BookCopy;
 
 /**
  *
@@ -15,12 +17,23 @@ import model.Book;
 public class BookDao {
     
     static final String OUTPUT_DIR = IStoragePath.OUTPUT_DIR + "book"; 
+    BookCopyDao bookCopyDAO = new BookCopyDao();
     
-    
-    //TODO: check if we want to return result or not
-    public boolean addBook(Book book){       
+    //any exception happned it returned to the caller
+    public void addBook(Book book) throws IOException{       
+       //if the listCopies in book object is not null -> we should store each book copy in the folder bookCopy
+       List<BookCopy> copies = book.getCopies(); 
+       book.setCopies(null);
+       
+       String isbn = book.getIsbn();
+        if (copies != null) 
+            for (BookCopy copy : copies ) {
+                copy.setIsbn(isbn);                
+                bookCopyDAO.addBookCopy(copy);
+            }
+        
         DataAccessUtil.saveObject(OUTPUT_DIR, book.getIsbn(), book);       
-        return false;
+       
     }
     
     //get all books 

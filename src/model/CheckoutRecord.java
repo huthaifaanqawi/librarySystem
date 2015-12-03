@@ -5,13 +5,14 @@
  */
 package model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  *
  * @author 984894
  */
-public class CheckoutRecord {
+public class CheckoutRecord implements Serializable{
     
     private int id;    
     private LibraryMember libraryMember;

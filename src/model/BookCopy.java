@@ -1,16 +1,19 @@
 package model;
 
-public class BookCopy {
+import java.io.Serializable;
 
-    private int copynumber;
+public class BookCopy implements Serializable{
+
+    private String copynumber;
     private boolean available;
-    private Book book;    
+    private Book book;
+    private String isbn; //foreign key   
 
-    public int getCopynumber() {
+    public String getCopynumber() {
         return this.copynumber;
     }
 
-    public void setCopynumber(int copynumber) {
+    public void setCopynumber(String copynumber) {
         this.copynumber = copynumber;
     }
 
@@ -28,6 +31,14 @@ public class BookCopy {
 
     public void setBook(Book book) {
         this.book = book;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
 }

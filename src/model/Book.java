@@ -1,13 +1,14 @@
 package model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Book {
+public class Book implements Serializable{
     
     private String title;
     private String isbn;  //it used as id  
     private List<Author> authors;
-    private List<Book> copies;//book copies
+    private List<BookCopy> copies;//book copies
 
     public String getTitle() {
         return this.title;
@@ -33,11 +34,11 @@ public class Book {
         this.authors = authors;
     }
 
-    public List<Book> getCopies() {
+    public List<BookCopy> getCopies() {
         return copies;
     }
 
-    public void setCopies(List<Book> copies) {
+    public void setCopies(List<BookCopy> copies) {
         this.copies = copies;
     }
 }

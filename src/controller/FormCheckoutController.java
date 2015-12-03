@@ -5,16 +5,25 @@
  */
 package controller;
 
+import dao.BookDao;
+import dao.MemberDAO;
 import java.io.File;
 import java.io.FileWriter;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import model.Book;
+import model.LibraryMember;
 import util.util;
 
 /**
@@ -26,23 +35,51 @@ public class FormCheckoutController extends SaveFormBaseController {
 
     @FXML
     private Button exportButton;
+
+    @FXML
+    private ChoiceBox boxBook;
+    
+    @FXML
+    private ComboBox member;
+
+    MemberDAO memberDAO = new MemberDAO();
+
+    BookDao bookDAO = new BookDao();
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+        List<LibraryMember> members = memberDAO.getAllLibraryMembers();
+        List<String> member_ids = new ArrayList<>();
+        for (LibraryMember member : members) {
+            member_ids.add(member.getId());
+        }
+        member.setItems(FXCollections.observableArrayList(member_ids));
+
+        List<Book> books = bookDAO.getAllBooks();
+        List<String> book_titles = new ArrayList<>();
+        for (Book book : books) {
+            book_titles.add(book.getTitle());
+        }
+        boxBook.setItems(FXCollections.observableArrayList(book_titles));
+    }
     
     @FXML
+    public void handleSubmitAction(){
+        
+    }
+
+    @FXML
     public void handleExportButtonAction(ActionEvent event) {
-        
+
         Stage stage = new Stage();
-        
+
         util.log("Exporting data to file .csv...");
-        
+
         String defaultFileName = "LibrarySystemExport.csv";
-        
+
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save file");
         fileChooser.setInitialFileName(defaultFileName);
@@ -50,25 +87,22 @@ public class FormCheckoutController extends SaveFormBaseController {
         if (savedFile != null) {
             try {
                 saveFileRoutine(savedFile);
-            }
-            catch(Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
                 //actionStatus.setText("An ERROR occurred while saving the file!");
                 return;
             }
             //actionStatus.setText("File saved: " + savedFile.toString());
-        }
-        else {
+        } else {
             //actionStatus.setText("File save cancelled.");
         }
 
-        
         util.log("Export complete");
     }
-    
+
     private void saveFileRoutine(File file)
-			throws Exception{
-		
+            throws Exception {
+
         try {
             // Creates a new file and writes the txtArea contents into it
             String txt = "Text content";
@@ -77,9 +111,9 @@ public class FormCheckoutController extends SaveFormBaseController {
             FileWriter writer = new FileWriter(file);
             writer.write(txt);
             writer.close();
-        } catch(Exception e) {
-                            e.printStackTrace();                            
-            }
-	}
-    
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
