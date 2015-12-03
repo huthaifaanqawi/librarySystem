@@ -6,11 +6,14 @@
 package controller;
 
 import dao.BookDao;
+import dao.CheckoutEntryDAO;
+import dao.CheckoutRecordDAO;
 import dao.MemberDAO;
 import java.io.File;
 import java.io.FileWriter;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -23,6 +26,9 @@ import javafx.scene.control.ComboBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Book;
+import model.BookCopy;
+import model.CheckoutEntry;
+import model.CheckoutRecord;
 import model.LibraryMember;
 import util.util;
 
@@ -38,7 +44,7 @@ public class FormCheckoutController extends SaveFormBaseController {
 
     @FXML
     private ChoiceBox boxBook;
-    
+
     @FXML
     private ComboBox member;
 
@@ -46,6 +52,9 @@ public class FormCheckoutController extends SaveFormBaseController {
 
     BookDao bookDAO = new BookDao();
 
+    CheckoutRecordDAO checkoutRecordDAO = new CheckoutRecordDAO();
+
+    CheckoutEntryDAO checkoutEntryDAO = new CheckoutEntryDAO();
     /**
      * Initializes the controller class.
      */
@@ -65,10 +74,28 @@ public class FormCheckoutController extends SaveFormBaseController {
         }
         boxBook.setItems(FXCollections.observableArrayList(book_titles));
     }
-    
+
     @FXML
-    public void handleSubmitAction(){
-        
+    public void handleSubmitAction() {
+        CheckoutRecord checkoutRecord = new CheckoutRecord();
+        LibraryMember libraryMember = new LibraryMember();
+        libraryMember.setId(member.getValue().toString());
+        CheckoutEntry checkoutEntry = new CheckoutEntry();
+        checkoutEntry.setId("1");
+        checkoutEntry.setCheckoutDate(new Date());
+        checkoutEntry.setDueDate(new Date());
+        checkoutEntry.setCheckoutRecord(checkoutRecord);
+        checkoutRecord.setLibraryMember(libraryMember);
+        BookCopy bookCopy = new BookCopy();
+        bookCopy.setCopynumber("123456");
+        checkoutEntry.setBookCopy(bookCopy);
+        checkoutRecord.setId(1);
+        try {
+            checkoutRecordDAO.addCheckoutRecord(checkoutRecord);
+            checkoutEntryDAO.addCheckoutEntry(checkoutEntry);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

@@ -42,5 +42,13 @@ public class CheckoutRecord implements Serializable{
     public void setFines(List<Fine> fines) {
         this.fines = fines;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     
 }

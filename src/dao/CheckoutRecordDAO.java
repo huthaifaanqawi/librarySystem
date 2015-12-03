@@ -5,23 +5,36 @@
  */
 package dao;
 
+import java.util.List;
 import model.CheckoutRecord;
+import model.LibraryMember;
 
 /**
  *
  * @author 984894
  */
 public class CheckoutRecordDAO {
+    static final String OUTPUT_DIR = IStoragePath.OUTPUT_DIR + "checkoutRecord"; 
     
     public void addCheckoutEntry(CheckoutRecord checkoutRecord){
         
     }
     
-    public CheckoutRecord getCheckoutRecord(){
+    public CheckoutRecord getCheckoutRecord(CheckoutRecord checkoutRecord){
+        List<CheckoutRecord> checkoutRecords = DataAccessUtil.readAllObject(OUTPUT_DIR);
+        if(checkoutRecords.isEmpty())return checkoutRecord;
+        for(CheckoutRecord cr:checkoutRecords){
+            if(checkoutRecord.getLibraryMember().getId().equals(cr.getLibraryMember().getId())){
+                return cr;
+            }
+        }
         return null;
     }
     
-    public void addCheckoutRecord(CheckoutRecord checkoutRecord){
-        
+    public void addCheckoutRecord(CheckoutRecord checkoutRecord)throws Exception{
+        CheckoutRecord cr = getCheckoutRecord(checkoutRecord);
+        if(cr == null){
+            DataAccessUtil.saveObject(OUTPUT_DIR, checkoutRecord.getId()+"", checkoutRecord); 
+        }
     }
 }
