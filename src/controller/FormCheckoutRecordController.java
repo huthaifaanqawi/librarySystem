@@ -79,7 +79,6 @@ public class FormCheckoutRecordController extends SaveFormBaseController {
         for (int i = 0; i < members.size(); i++) {
             entries.addAll(members.get(i).getCheckoutRecord().getCheckoutEntries());
         }
-        System.out.println("sizeeeeeeeeeee:"+entries.size());
         TableColumn checkoutID = getTableColumnByName(tableView, "CheckoutID");
         TableColumn member = getTableColumnByName(tableView, "Member");
         TableColumn book = getTableColumnByName(tableView, "Book");
