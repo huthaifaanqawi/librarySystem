@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class CheckoutEntry {
 
-    private int id;//same as database id
+    private String id;//same as database id
     private Date checkoutDate;
     private Date dueDate;
     private BookCopy bookCopy;
@@ -41,6 +41,14 @@ public class CheckoutEntry {
 
     public void setCheckoutRecord(CheckoutRecord checkoutRecord) {
         this.checkoutRecord = checkoutRecord;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
 

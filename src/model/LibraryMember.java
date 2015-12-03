@@ -10,6 +10,14 @@ package model;
  * @author win7
  */
 public class LibraryMember extends Person{ 
-    
+    private CheckoutRecord checkoutRecord;
+
+    public CheckoutRecord getCheckoutRecord() {
+        return checkoutRecord;
+    }
+
+    public void setCheckoutRecord(CheckoutRecord checkoutRecord) {
+        this.checkoutRecord = checkoutRecord;
+    }
     
 }

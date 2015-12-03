@@ -5,6 +5,7 @@
  */
 package controller;
 
+import dao.MemberDAO;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,13 +20,19 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.util.Callback;
+import model.BookCopy;
+import model.CheckoutEntry;
 import util.util;
 import model.CheckoutRecord;
+import model.LibraryMember;
 
 /**
  * FXML Controller class
@@ -50,54 +57,90 @@ public class FormCheckoutRecordController extends SaveFormBaseController {
     
     private CheckoutRecord checkoutRecord = new CheckoutRecord();
     
-    
+    MemberDAO memberDAO = new MemberDAO();
     /**
      * Initializes the controller class.
      */
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
         loadTableView();
 
         tableView.getSelectionModel().selectedItemProperty()
-                        .addListener((observable, oldValue, newValue) -> handleTableViewDoubleClickAction());
-        
-    }    
-    
-    
-    public void loadTableView() {
-        List checkoutRecords = new ArrayList<String>();
-        CheckoutRecord cr = new CheckoutRecord();
-        /*cr.setFirstName("Mauro");
-        cr.setDate("10-08-2015");
-        cr.setISBN("123");
-        checkoutRecords.add(cr);
-        
-        CheckoutRecord cr2 = new CheckoutRecord();
-        cr.setFirstName("Mauro");
-        cr.setDate("10-01-2015");
-        cr.setISBN("345");
-        checkoutRecords.add(cr);
+                .addListener((observable, oldValue, newValue) -> handleTableViewDoubleClickAction());
 
-        tableView.getItems().addAll(FXCollections.observableList(checkoutRecords));
-*/
     }
     
-    
+    public void loadTableView() {
+        CheckoutRecord cr = new CheckoutRecord();
+        ArrayList<LibraryMember> members = memberDAO.getAllLibraryMembers();
+        List<CheckoutEntry> entries = new ArrayList<>();
+        for (int i = 0; i < members.size(); i++) {
+            entries.addAll(members.get(i).getCheckoutRecord().getCheckoutEntries());
+        }
+        System.out.println("sizeeeeeeeeeee:"+entries.size());
+        TableColumn checkoutID = getTableColumnByName(tableView, "CheckoutID");
+        TableColumn member = getTableColumnByName(tableView, "Member");
+        TableColumn book = getTableColumnByName(tableView, "Book");
+        TableColumn Checkout_Date = getTableColumnByName(tableView, "Checkout Date");
+        TableColumn Return_Date = getTableColumnByName(tableView, "Return Date");
+
+        tableView.setItems(FXCollections.observableList(entries));
+        checkoutID.setCellValueFactory(new PropertyValueFactory<CheckoutEntry, String>("id"));
+        member.setCellValueFactory(new PropertyValueFactory<CheckoutEntry, String>("checkoutRecord"));
+        book.setCellValueFactory(new PropertyValueFactory<CheckoutEntry, String>("bookCopy"));
+        Checkout_Date.setCellValueFactory(new PropertyValueFactory<CheckoutEntry, String>("checkoutDate"));
+        Return_Date.setCellValueFactory(new PropertyValueFactory<CheckoutEntry, String>("dueDate"));
+
+        member.setCellFactory(new Callback<TableColumn<CheckoutEntry, CheckoutRecord>, TableCell<CheckoutEntry, CheckoutRecord>>() {
+            @Override
+            public TableCell<CheckoutEntry, CheckoutRecord> call(TableColumn<CheckoutEntry, CheckoutRecord> p) {
+                final TableCell<CheckoutEntry, CheckoutRecord> cell = new TableCell<CheckoutEntry, CheckoutRecord>() {
+                    @Override
+                    public void updateItem(final CheckoutRecord item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            this.setText("");
+                        } else {
+                            this.setText(item.getLibraryMember().getFirstName());
+                        }
+                    }
+                };
+                return cell;
+            }
+        });
+        
+        book.setCellFactory(new Callback<TableColumn<CheckoutEntry, BookCopy>, TableCell<CheckoutEntry, BookCopy>>() {
+            @Override
+            public TableCell<CheckoutEntry, BookCopy> call(TableColumn<CheckoutEntry, BookCopy> p) {
+                final TableCell<CheckoutEntry, BookCopy> cell = new TableCell<CheckoutEntry, BookCopy>() {
+                    @Override
+                    public void updateItem(final BookCopy item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            this.setText("");
+                        } else {
+                            this.setText(item.getBook().getTitle());
+                        }
+                    }
+                };
+                return cell;
+            }
+        });
+    }
+
     public void handleTableViewDoubleClickAction() {
 
         tableView.setOnMousePressed((MouseEvent event) -> {
             if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
-                
+
                 int rowIndex = tableView.getSelectionModel().getSelectedIndex();
-                ObservableList rowList = (ObservableList) tableView.getItems().get(rowIndex);   
-                
-                
+                ObservableList rowList = (ObservableList) tableView.getItems().get(rowIndex);
+
                 //Retrieving CheckoutID
                 String checkoutKey = rowList.get(0).toString();
-                
-                
-                        
+
                 Stage stage = new Stage();
 
                 util.log("Loading detailed record form...");
@@ -121,12 +164,21 @@ public class FormCheckoutRecordController extends SaveFormBaseController {
                     util.log("Showing " + formURL);
                     stage.show();
 
-                } catch(Exception e) {
+                } catch (Exception e) {
                     e.printStackTrace();
-                    }
+                }
             }
         });
 
+    }
+
+    private <T> TableColumn<T, ?> getTableColumnByName(TableView<T> tableView, String name) {
+        for (TableColumn<T, ?> col : tableView.getColumns()) {
+            if (col.getText().equals(name)) {
+                return col;
+            }
+        }
+        return null;
     }
    
     
