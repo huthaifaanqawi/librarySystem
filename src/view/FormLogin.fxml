@@ -46,5 +46,10 @@
       </Label>
       <Button fx:id="signInButton" layoutX="56.0" layoutY="216.0" mnemonicParsing="false" onAction="#handleSignInButtonAction" prefHeight="35.0" prefWidth="135.0" text="Sign In" />
       <Button fx:id="cancelButton" cancelButton="true" layoutX="249.0" layoutY="216.0" mnemonicParsing="false" onAction="#handleCloseButtonAction" prefHeight="35.0" prefWidth="135.0" text="Cancel" />
+      <ImageView fitHeight="75.0" fitWidth="84.0" layoutX="339.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Main/books.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
