@@ -32,7 +32,7 @@ import model.CheckoutRecord;
  *
  * @author mauro
  */
-public class FormCheckoutRecordController extends FormBaseController {
+public class FormCheckoutRecordController extends SaveFormBaseController {
     @FXML
     private ChoiceBox member;
     

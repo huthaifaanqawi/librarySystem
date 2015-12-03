@@ -5,7 +5,7 @@
  */
 package controller;
 
-import controller.FormBaseController;
+import controller.SaveFormBaseController;
 import dao.MemberDAO;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,7 +21,7 @@ import model.LibraryMember;
  *
  * @author win7
  */
-public class FormAddMemberController extends FormBaseController {
+public class FormAddMemberController extends SaveFormBaseController {
 
     @FXML
     private ComboBox state;

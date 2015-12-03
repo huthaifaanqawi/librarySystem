@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
@@ -9,7 +10,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="277.0" prefWidth="427.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.FormLoginController">
+<AnchorPane id="AnchorPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="277.0" prefWidth="427.0" style="-fx-background-color: FFFFFF;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FormLoginController">
     <stylesheets>
         <URL value="@system.css" />
     </stylesheets>
@@ -41,8 +42,9 @@
       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="55.0" prefWidth="427.0" text="Library System" textAlignment="CENTER">
          <font>
             <Font size="36.0" />
-         </font></Label>
-      <Button fx:id="signInButton" layoutX="56.0" layoutY="216.0" mnemonicParsing="false" onAction="#handleSignInButtonAction" prefHeight="26.0" prefWidth="125.0" text="Sign In" />
-      <Button fx:id="cancelButton" cancelButton="true" layoutX="249.0" layoutY="216.0" mnemonicParsing="false" onAction="#handleCloseButtonAction" prefHeight="26.0" prefWidth="125.0" text="Cancel" />
+         </font>
+      </Label>
+      <Button fx:id="signInButton" layoutX="56.0" layoutY="216.0" mnemonicParsing="false" onAction="#handleSignInButtonAction" prefHeight="35.0" prefWidth="135.0" text="Sign In" />
+      <Button fx:id="cancelButton" cancelButton="true" layoutX="249.0" layoutY="216.0" mnemonicParsing="false" onAction="#handleCloseButtonAction" prefHeight="35.0" prefWidth="135.0" text="Cancel" />
    </children>
 </AnchorPane>

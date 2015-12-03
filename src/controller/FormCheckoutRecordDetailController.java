@@ -19,7 +19,7 @@ import model.CheckoutRecord;
  *
  * @author 984894
  */
-public class FormCheckoutRecordDetailController extends FormBaseController {
+public class FormCheckoutRecordDetailController extends SaveFormBaseController {
     
     @FXML
     private TextField id;

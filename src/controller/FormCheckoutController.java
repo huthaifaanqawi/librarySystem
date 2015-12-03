@@ -22,7 +22,7 @@ import util.util;
  *
  * @author mauro
  */
-public class FormCheckoutController extends FormBaseController {
+public class FormCheckoutController extends SaveFormBaseController {
 
     @FXML
     private Button exportButton;
