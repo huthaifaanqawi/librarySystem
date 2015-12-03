@@ -64,6 +64,15 @@ public class FormLoginController implements Initializable {
         stage.close();
     }
 
+    
+    @FXML
+    public void handleOnEnter(ActionEvent event) {
+        
+        if (true) {
+            handleSignInButtonAction(event);
+        }
+    }
+    
     @FXML
     public void handleSignInButtonAction(ActionEvent event) {
 
