@@ -6,6 +6,7 @@
 package dao;
 
 import model.CheckoutEntry;
+import util.FolderReader;
 
 /**
  *
@@ -15,6 +16,8 @@ public class CheckoutEntryDAO {
     static final String OUTPUT_DIR = IStoragePath.OUTPUT_DIR + "checkoutEntry"; 
     
     public void addCheckoutEntry(CheckoutEntry checkoutEntry)throws Exception{
+        String lastID = FolderReader.getLastFileName(OUTPUT_DIR);
+        checkoutEntry.setId((Integer.parseInt(lastID)+1)+"");
         DataAccessUtil.saveObject(OUTPUT_DIR, checkoutEntry.getId(), checkoutEntry); 
     }
 }

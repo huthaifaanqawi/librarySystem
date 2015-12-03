@@ -8,6 +8,7 @@ package dao;
 import java.util.List;
 import model.CheckoutRecord;
 import model.LibraryMember;
+import util.FolderReader;
 
 /**
  *
@@ -20,9 +21,8 @@ public class CheckoutRecordDAO {
         
     }
     
-    public CheckoutRecord getCheckoutRecord(CheckoutRecord checkoutRecord){
+    public CheckoutRecord getCheckoutRecordByLibraryMember(CheckoutRecord checkoutRecord){
         List<CheckoutRecord> checkoutRecords = DataAccessUtil.readAllObject(OUTPUT_DIR);
-        if(checkoutRecords.isEmpty())return checkoutRecord;
         for(CheckoutRecord cr:checkoutRecords){
             if(checkoutRecord.getLibraryMember().getId().equals(cr.getLibraryMember().getId())){
                 return cr;
@@ -32,9 +32,11 @@ public class CheckoutRecordDAO {
     }
     
     public void addCheckoutRecord(CheckoutRecord checkoutRecord)throws Exception{
-        CheckoutRecord cr = getCheckoutRecord(checkoutRecord);
+        String lastID = FolderReader.getLastFileName(OUTPUT_DIR);
+        checkoutRecord.setId((Integer.parseInt(lastID)+1)+"");
+        CheckoutRecord cr = getCheckoutRecordByLibraryMember(checkoutRecord);
         if(cr == null){
-            DataAccessUtil.saveObject(OUTPUT_DIR, checkoutRecord.getId()+"", checkoutRecord); 
+            DataAccessUtil.saveObject(OUTPUT_DIR, checkoutRecord.getId(), checkoutRecord); 
         }
     }
 }

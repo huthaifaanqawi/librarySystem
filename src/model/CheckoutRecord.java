@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class CheckoutRecord implements Serializable{
     
-    private int id;    
+    private String id;    
     private LibraryMember libraryMember;
     private List<CheckoutEntry> checkoutEntries;//ChecoutRecord consists of many of entries 
     private List<Fine> fines;   
@@ -43,12 +43,14 @@ public class CheckoutRecord implements Serializable{
         this.fines = fines;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
+
+   
     
 }

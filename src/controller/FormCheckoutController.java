@@ -81,7 +81,6 @@ public class FormCheckoutController extends SaveFormBaseController {
         LibraryMember libraryMember = new LibraryMember();
         libraryMember.setId(member.getValue().toString());
         CheckoutEntry checkoutEntry = new CheckoutEntry();
-        checkoutEntry.setId("1");
         checkoutEntry.setCheckoutDate(new Date());
         checkoutEntry.setDueDate(new Date());
         checkoutEntry.setCheckoutRecord(checkoutRecord);
@@ -89,7 +88,6 @@ public class FormCheckoutController extends SaveFormBaseController {
         BookCopy bookCopy = new BookCopy();
         bookCopy.setCopynumber("123456");
         checkoutEntry.setBookCopy(bookCopy);
-        checkoutRecord.setId(1);
         try {
             checkoutRecordDAO.addCheckoutRecord(checkoutRecord);
             checkoutEntryDAO.addCheckoutEntry(checkoutEntry);

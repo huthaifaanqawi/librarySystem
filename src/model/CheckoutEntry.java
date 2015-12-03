@@ -10,7 +10,6 @@ public class CheckoutEntry implements Serializable{
     private Date dueDate;
     private BookCopy bookCopy;
     private CheckoutRecord checkoutRecord;//TODO: maybe it is not needed
-
     
     public Date getCheckoutDate() {
         return this.checkoutDate;
