@@ -6,6 +6,10 @@
 package Main;
 
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,6 +22,18 @@ import util.*;
  * @author mauro
  */
 public class Main extends Application {
+   
+    private static DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+    private static Date _today = Calendar.getInstance().getTime();        
+    private static String today = df.format(_today);
+    
+    //private String = "LibrarySystem_" + today + ".log";
+    private String logName = "LibrarySystem_" + today + ".log";
+    
+    public String getLogName() {
+        return logName;
+    }
+    
     @Override
     public void start(Stage primaryStage) {
         try {

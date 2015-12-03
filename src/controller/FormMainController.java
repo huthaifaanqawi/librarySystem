@@ -122,7 +122,7 @@ public class FormMainController implements Initializable {
             stage.setScene(scene);
 
             stage.setResizable(false);
-            stage.setAlwaysOnTop(true);
+            //stage.setAlwaysOnTop(true);
 
             util.log("Showing " + formURL +  " form");
             stage.show();

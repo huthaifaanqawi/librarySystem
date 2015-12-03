@@ -14,12 +14,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.event.*;
+import javafx.stage.Stage;
 import model.CheckoutRecord;
+import util.util;
 /**
  *
  * @author 984894
  */
-public class FormCheckoutRecordDetailController extends SaveFormBaseController {
+public class FormCheckoutRecordDetailController implements Initializable {
     
     @FXML
     private TextField id;
@@ -42,6 +44,9 @@ public class FormCheckoutRecordDetailController extends SaveFormBaseController {
     @FXML
     private Button editBtn;
     
+     @FXML
+    Button okButton;
+    
     private CheckoutRecordDAO checkoutRecordDAO;
     
     @Override
@@ -61,4 +66,13 @@ public class FormCheckoutRecordDetailController extends SaveFormBaseController {
         checkoutRecordDAO.editCheckoutRecord(checkoutRecord);
     }
     
+    
+    @FXML
+    public void handleOkButtonAction(ActionEvent event) {
+        Stage stage = (Stage) okButton.getScene().getWindow();
+
+        util.log("Closing form");
+
+        stage.close();
+    }
 }

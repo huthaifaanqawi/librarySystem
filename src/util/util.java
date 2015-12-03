@@ -5,11 +5,21 @@
  */
 package util;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import Main.Main;
+import javafx.stage.FileChooser;
+
 /**
  *
  * @author mauro
  */
 public class util {
+    
     
     private static boolean writeToConsole = true;
     
@@ -59,8 +69,29 @@ public class util {
            //Must write in a log file...
            //System.out.println(callerClassName + ": "+ msg);
            System.out.println(msg);
+           //saveFileRoutine(file, msg);
        }
         
     }
+    
+    public static void setLogFile() {
+        
+        File logFile;
+        
+    }
+    
+    private static void saveFileRoutine(File file, String txt)
+			throws Exception{
+		
+        try {
+
+            file.createNewFile();
+            FileWriter writer = new FileWriter(file);
+            writer.write(txt);
+            writer.close();
+        } catch(Exception e) {
+                            e.printStackTrace();                            
+            }
+	}
     
 }
