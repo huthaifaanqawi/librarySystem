@@ -6,16 +6,14 @@
 package Main;
 
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import dao.SystemUserDAO;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import model.SystemUser;
 import util.*;
 /**
  *
@@ -23,19 +21,22 @@ import util.*;
  */
 public class Main extends Application {
    
-    private static DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-    private static Date _today = Calendar.getInstance().getTime();        
-    private static String today = df.format(_today);
-    
-    //private String = "LibrarySystem_" + today + ".log";
-    private String logName = "LibrarySystem_" + today + ".log";
-    
-    public String getLogName() {
-        return logName;
-    }
+
     
     @Override
     public void start(Stage primaryStage) {
+        
+        
+        SystemUser admin = new SystemUser();
+        admin.setUsername("admin");
+        admin.setPassword("admin");
+        admin.setRole(SystemUser.AuthorizationLevel.ADMINISTRATOR);
+        
+        SystemUserDAO adminDAO = new SystemUserDAO();
+        
+        //adminDAO.addUser(admin);
+
+        
         try {
 
             setUserAgentStylesheet(STYLESHEET_MODENA);
