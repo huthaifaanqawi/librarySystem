@@ -12,6 +12,7 @@ import dao.MemberDAO;
 import java.io.File;
 import java.io.FileWriter;
 import java.net.URL;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,6 +24,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Book;
@@ -47,6 +49,9 @@ public class FormCheckoutController extends SaveFormBaseController {
 
     @FXML
     private ComboBox member;
+    
+    @FXML
+    private DatePicker dueDate;
 
     MemberDAO memberDAO = new MemberDAO();
 
@@ -81,8 +86,9 @@ public class FormCheckoutController extends SaveFormBaseController {
         LibraryMember libraryMember = new LibraryMember();
         libraryMember.setId(member.getValue().toString());
         CheckoutEntry checkoutEntry = new CheckoutEntry();
-        checkoutEntry.setCheckoutDate(new Date());
-        checkoutEntry.setDueDate(new Date());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy");
+        checkoutEntry.setCheckoutDate(formatter.format(dueDate.getValue()));
+        checkoutEntry.setDueDate(formatter.format(dueDate.getValue()));
         checkoutEntry.setCheckoutRecord(checkoutRecord);
         checkoutRecord.setLibraryMember(libraryMember);
         BookCopy bookCopy = new BookCopy();

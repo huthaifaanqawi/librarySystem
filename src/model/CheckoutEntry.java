@@ -6,24 +6,24 @@ import java.util.Date;
 public class CheckoutEntry implements Serializable{
 
     private String id;//same as database id
-    private Date checkoutDate;
-    private Date dueDate;
+    private String checkoutDate;
+    private String dueDate;
     private BookCopy bookCopy;
     private CheckoutRecord checkoutRecord;//TODO: maybe it is not needed
-    
-    public Date getCheckoutDate() {
-        return this.checkoutDate;
+
+    public String getCheckoutDate() {
+        return checkoutDate;
     }
 
-    public void setCheckoutDate(Date checkoutDate) {
+    public void setCheckoutDate(String checkoutDate) {
         this.checkoutDate = checkoutDate;
     }
 
-    public Date getDueDate() {
-        return this.dueDate;
+    public String getDueDate() {
+        return dueDate;
     }
 
-    public void setDueDate(Date dueDate) {
+    public void setDueDate(String dueDate) {
         this.dueDate = dueDate;
     }
 

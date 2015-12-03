@@ -56,7 +56,7 @@ public class Main extends Application {
 
             primaryStage.setResizable(false);
 
-            primaryStage.getIcons().add(new Image("Main/books.png"));
+            //primaryStage.getIcons().add(new Image("Main/books.png"));
             primaryStage.setTitle("Library System 1.0");
             
             util.log("Showing Login screen form");

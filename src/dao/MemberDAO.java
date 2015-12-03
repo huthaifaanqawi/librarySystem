@@ -46,8 +46,7 @@ public class MemberDAO {
         bookCopy.setCopynumber("1");
         ce.setId("1234");
         ce.setBookCopy(bookCopy);
-        ce.setCheckoutDate(new Date());
-        ce.setDueDate(new Date());
+        
         ce.setCheckoutRecord(cr);
         List<CheckoutEntry> entries = new ArrayList<CheckoutEntry>();
         entries.add(ce);

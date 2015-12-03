@@ -5,6 +5,8 @@
  */
 package controller;
 
+import dao.CheckoutEntryDAO;
+import dao.CheckoutRecordDAO;
 import dao.MemberDAO;
 import java.net.URL;
 import java.util.ArrayList;
@@ -58,6 +60,12 @@ public class FormCheckoutRecordController extends SaveFormBaseController {
     private CheckoutRecord checkoutRecord = new CheckoutRecord();
     
     MemberDAO memberDAO = new MemberDAO();
+    
+    CheckoutRecordDAO checkoutRecordDAO = new CheckoutRecordDAO();
+    
+    CheckoutEntryDAO entryDAO = new CheckoutEntryDAO();
+    
+    
     /**
      * Initializes the controller class.
      */
@@ -72,7 +80,7 @@ public class FormCheckoutRecordController extends SaveFormBaseController {
     }
     
     public void loadTableView() {
-        /*CheckoutRecord cr = new CheckoutRecord();
+        CheckoutRecord cr = new CheckoutRecord();
         List<LibraryMember> members = memberDAO.getAllLibraryMembers();
         List<CheckoutEntry> entries = new ArrayList<>();
         for (int i = 0; i < members.size(); i++) {
@@ -125,7 +133,7 @@ public class FormCheckoutRecordController extends SaveFormBaseController {
                 };
                 return cell;
             }
-        });*/
+        });
     }
     
     @FXML
