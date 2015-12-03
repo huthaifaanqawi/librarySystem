@@ -17,7 +17,10 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import util.util;
 import Main.Main;
+import java.util.Optional;
 import javafx.application.Platform;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 /**
  * FXML Controller class
@@ -80,10 +83,21 @@ public class FormMainController implements Initializable {
     @FXML
     public void handleCloseButtonAction(ActionEvent event) {
 
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Library System");
+        alert.setHeaderText("Close Library System");
+        alert.setContentText("Are you sure you want close the system?");
+
+        Optional<ButtonType> result = alert.showAndWait();
         
-        util.log("Finishing application");
+        if (result.get() == ButtonType.OK) {
+            util.log("Closing application");
+
+            util.log("Finishing application");
+
+            Platform.exit();
+        }
         
-        Platform.exit();
         
     }
 
