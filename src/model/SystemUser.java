@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 public class SystemUser implements Serializable {    
     
-    public enum AuthorizationLevel {ADMINISTRATOR, LIBRARIAN};
+    public enum AuthorizationLevel {ADMINISTRATOR, LIBRARIAN, BOTH};
     
     private AuthorizationLevel role;
     private String username;//will be used as id
