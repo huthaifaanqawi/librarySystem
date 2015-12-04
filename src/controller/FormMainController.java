@@ -21,6 +21,7 @@ import java.util.Optional;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import model.SystemUser;
 
 /**
  * FXML Controller class
@@ -29,6 +30,10 @@ import javafx.scene.control.ButtonType;
  */
 public class FormMainController implements Initializable {
 
+    public FormMainController(SystemUser user) {
+        this.setUser(user);
+    }
+    
     @FXML
     public Button checkoutButton;
 
@@ -53,12 +58,42 @@ public class FormMainController implements Initializable {
     @FXML
     public Button closeButton;
     
+    private SystemUser user = new SystemUser();
+    
+    
+    public void setUser(SystemUser u) {
+        user = u; 
+    }
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
+        util.log("Setting buttons according privileges");
+        checkoutButton.setDisable(true);
+        checkoutRecordButton.setDisable(true);
+        addMemberButton.setDisable(true);
+        editMemberButton.setDisable(true);
+        addBookButton.setDisable(true);
+        addBookCopyButton.setDisable(true);
+        
+        if ((user.getRole() == SystemUser.AuthorizationLevel.ADMINISTRATOR) || (user.getRole() == SystemUser.AuthorizationLevel.BOTH) ) {
+            util.log("User has Administrator privileges");
+            addMemberButton.setDisable(false);
+            editMemberButton.setDisable(false);
+            addBookButton.setDisable(false);
+            addBookCopyButton.setDisable(false);
+        }
+
+        if ((user.getRole() == SystemUser.AuthorizationLevel.LIBRARIAN) || (user.getRole() == SystemUser.AuthorizationLevel.BOTH) ) {
+            util.log("Use has Librarian privileges");
+            checkoutButton.setDisable(false);
+            checkoutRecordButton.setDisable(false);
+            
+        }
+        
     }    
     
     
