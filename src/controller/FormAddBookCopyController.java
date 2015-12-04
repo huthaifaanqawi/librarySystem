@@ -6,8 +6,11 @@
 package controller;
 
 import dao.BookCopyDao;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -16,6 +19,7 @@ import javafx.stage.Stage;
 import model.Book;
 import model.BookCopy;
 import util.FieldValidator;
+import util.Message;
 
 /**
  * FXML Controller class
@@ -44,17 +48,16 @@ public class FormAddBookCopyController extends SaveFormBaseController {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         isbnField.setDisable(true);        
-        titleField.setDisable(true);  
-    }    
+        titleField.setDisable(true);
+    }
     
     
     @FXML
-    private void btnAddBookCopyAction(ActionEvent event)throws Exception {
-       
+    private void btnAddBookCopyAction(ActionEvent event) {
+        
         //Validation  
         if ( !validate() ) // if not valid don't continu, just return to the form
-            return;        
-        
+            return;   
         
         BookCopy copy = new BookCopy();
         copy.setCopynumber(copyNumField.getText());
@@ -63,9 +66,15 @@ public class FormAddBookCopyController extends SaveFormBaseController {
         book.setIsbn(isbnField.getText());
         copy.setBook(book);
         copy.setAvailable(true);
-        bookCopyDao.addBookCopy(copy);     
-        Stage stage = (Stage) addButton.getScene().getWindow();
-        stage.close();
+        try {
+            bookCopyDao.addBookCopy(copy);
+             Message.showSuccessMessage("Add Book Copy", "Book Copy Added Sucessfully to book", ""); 
+        } catch (IOException ex) {
+            Message.showErrorMessage("Add Book", "Saving Book Copy Failed. Exception message: ",  ex.getMessage());                      
+        }
+
+        //Stage stage = (Stage) addButton.getScene().getWindow();
+            //stage.close();
         
     }
 

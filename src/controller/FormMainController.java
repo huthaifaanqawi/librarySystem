@@ -75,7 +75,7 @@ public class FormMainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        String role;
+        String role;       
         
         util.log("Setting buttons according privileges");
         checkoutButton.setDisable(true);
@@ -97,7 +97,7 @@ public class FormMainController implements Initializable {
         if ((user.getRole() == SystemUser.AuthorizationLevel.ADMINISTRATOR) || (user.getRole() == SystemUser.AuthorizationLevel.BOTH) ) {
             util.log("User has Administrator privileges");
             addMemberButton.setDisable(false);
-            editMemberButton.setDisable(false);
+            //editMemberButton.setDisable(false);
             addBookButton.setDisable(false);
             books.setDisable(false);
         }
