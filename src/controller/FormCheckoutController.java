@@ -88,7 +88,7 @@ public class FormCheckoutController extends SaveFormBaseController {
     }
 
     @FXML
-    public void handleSubmitAction() {
+    public void handleSubmitAction() throws Exception{
         //Fields Validation        
         if ( !validate() ) // if not valid don't continu, just return to the form
             return; 
@@ -100,7 +100,6 @@ public class FormCheckoutController extends SaveFormBaseController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy");
         checkoutEntry.setCheckoutDate(formatter.format(dueDate.getValue()));
         checkoutEntry.setDueDate(formatter.format(dueDate.getValue()));
-        checkoutEntry.setCheckoutRecord(checkoutRecord);
         checkoutRecord.setLibraryMember(libraryMember);
         BookCopy bookCopy = new BookCopy();
         List<BookCopy> copies = bookCopyDao.getBookCopiesByISBN(boxBook.getValue().toString());
@@ -111,13 +110,14 @@ public class FormCheckoutController extends SaveFormBaseController {
             Book book = new Book();
             book.setIsbn(boxBook.getValue().toString());
             bookCopy.setBook(book);
+            bookCopyDao.addBookCopy(bookCopy);
         }
-        //write the book copy to modify availability
-        bookCopy.setCopynumber("12");
-        bookCopy.setIsbn(boxBook.getValue().toString());
         checkoutEntry.setBookCopy(bookCopy);
+        
         try {
-            checkoutRecordDAO.addCheckoutRecord(checkoutRecord);
+            String checkoutRecordID = checkoutRecordDAO.addCheckoutRecord(checkoutRecord);
+            checkoutRecord.setId(checkoutRecordID);
+            checkoutEntry.setCheckoutRecord(checkoutRecord);
             checkoutEntryDAO.addCheckoutEntry(checkoutEntry);
         } catch (Exception e) {
             e.printStackTrace();

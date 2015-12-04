@@ -31,13 +31,16 @@ public class CheckoutRecordDAO {
         return null;
     }
     
-    public void addCheckoutRecord(CheckoutRecord checkoutRecord)throws Exception{
-        String lastID = FolderReader.getLastFileName(OUTPUT_DIR);
-        checkoutRecord.setId((Integer.parseInt(lastID)+1)+"");
+    public String addCheckoutRecord(CheckoutRecord checkoutRecord)throws Exception{
         CheckoutRecord cr = getCheckoutRecordByLibraryMember(checkoutRecord);
         if(cr == null){
+            String lastID = FolderReader.getLastFileName(OUTPUT_DIR);
+            checkoutRecord.setId((Integer.parseInt(lastID)+1)+"");
             DataAccessUtil.saveObject(OUTPUT_DIR, checkoutRecord.getId(), checkoutRecord); 
+            return checkoutRecord.getId();
         }
+        return cr.getId();
+        
     }
     
     public CheckoutRecord getCheckoutRecordByID(CheckoutRecord checkoutRecord){
