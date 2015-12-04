@@ -50,7 +50,7 @@ public class FormMainController implements Initializable {
     public Button addBookButton;
 
     @FXML
-    public Button addBookCopyButton;
+    public Button books;
 
     @FXML
     public Button logoffButton;
@@ -77,14 +77,14 @@ public class FormMainController implements Initializable {
         addMemberButton.setDisable(true);
         editMemberButton.setDisable(true);
         addBookButton.setDisable(true);
-        addBookCopyButton.setDisable(true);
+        books.setDisable(true);
         
         if ((user.getRole() == SystemUser.AuthorizationLevel.ADMINISTRATOR) || (user.getRole() == SystemUser.AuthorizationLevel.BOTH) ) {
             util.log("User has Administrator privileges");
             addMemberButton.setDisable(false);
             editMemberButton.setDisable(false);
             addBookButton.setDisable(false);
-            addBookCopyButton.setDisable(false);
+            books.setDisable(false);
         }
 
         if ((user.getRole() == SystemUser.AuthorizationLevel.LIBRARIAN) || (user.getRole() == SystemUser.AuthorizationLevel.BOTH) ) {
@@ -190,8 +190,8 @@ public class FormMainController implements Initializable {
         launchForm("/view/FormAddBook.fxml");
     }
     
-    public void handleAddBookCopyButtonAction(ActionEvent event) {
-        launchForm("/view/FormAddBook.fxml");
+    public void handleGetAllBooksButtonAction(ActionEvent event) {
+        launchForm("/view/books.fxml");
     }
     
 }

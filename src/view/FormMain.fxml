@@ -73,7 +73,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="addBookCopyButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleAddBookCopyButtonAction" prefHeight="70.0" prefWidth="310.0" text="Add Book Copy" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <Button fx:id="books" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleGetAllBooksButtonAction" prefHeight="70.0" prefWidth="310.0" text="Books" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <font>
                   <Font size="24.0" />
                </font>
