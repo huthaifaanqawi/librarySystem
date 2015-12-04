@@ -88,7 +88,7 @@ public class FormMainController implements Initializable {
         }
 
         if ((user.getRole() == SystemUser.AuthorizationLevel.LIBRARIAN) || (user.getRole() == SystemUser.AuthorizationLevel.BOTH) ) {
-            util.log("Use has Librarian privileges");
+            util.log("User has Librarian privileges");
             checkoutButton.setDisable(false);
             checkoutRecordButton.setDisable(false);
             

@@ -32,15 +32,33 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         
         
-        SystemUser admin = new SystemUser();
+       SystemUser admin = new SystemUser();
         admin.setUsername("admin");
         admin.setPassword("admin");
         admin.setRole(SystemUser.AuthorizationLevel.ADMINISTRATOR);
         
         SystemUserDAO adminDAO = new SystemUserDAO();
         
+        SystemUser librarian = new SystemUser();
+        librarian.setUsername("lib");
+        librarian.setPassword("lib");
+        librarian.setRole(SystemUser.AuthorizationLevel.LIBRARIAN);
+        
+        SystemUserDAO librarianDAO = new SystemUserDAO();
+        
+        SystemUser rootUser = new SystemUser();
+        rootUser.setUsername("root");
+        rootUser.setPassword("root");
+        rootUser.setRole(SystemUser.AuthorizationLevel.BOTH);
+        
+        SystemUserDAO rootDAO = new SystemUserDAO();
+        
+        
         try {
             adminDAO.addUser(admin);
+            librarianDAO.addUser(librarian);
+            rootDAO.addUser(librarian);
+            
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
