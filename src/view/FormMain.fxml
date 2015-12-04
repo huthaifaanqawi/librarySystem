@@ -110,6 +110,11 @@
                   <Insets />
                </GridPane.margin>
             </Button>
+            <Label fx:id="userLoggedLabel" text="Logged as" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" />
+               </GridPane.margin>
+            </Label>
          </children>
          <opaqueInsets>
             <Insets />
