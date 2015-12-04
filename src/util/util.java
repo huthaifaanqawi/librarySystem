@@ -13,10 +13,15 @@ import java.util.Calendar;
 import java.util.Date;
 import Main.Main;
 import dao.IStoragePath;
+import dao.SystemUserDAO;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.stage.FileChooser;
+import model.SystemUser;
 
 /**
  *
@@ -118,5 +123,42 @@ public class util {
         }
         
     }
-    
+
+    public static void createInitialDatabase() {
+        SystemUser admin = new SystemUser();
+        admin.setUsername("admin");
+        admin.setPassword("admin");
+        admin.setRole(SystemUser.AuthorizationLevel.ADMINISTRATOR);
+        
+        SystemUserDAO adminDAO = new SystemUserDAO();
+        
+        SystemUser librarian = new SystemUser();
+        librarian.setUsername("lib");
+        librarian.setPassword("lib");
+        librarian.setRole(SystemUser.AuthorizationLevel.LIBRARIAN);
+        
+        SystemUserDAO librarianDAO = new SystemUserDAO();
+        
+        SystemUser rootUser = new SystemUser();
+        rootUser.setUsername("root");
+        rootUser.setPassword("root");
+        rootUser.setRole(SystemUser.AuthorizationLevel.BOTH);
+        
+        SystemUserDAO rootDAO = new SystemUserDAO();
+        
+        
+        
+        
+        
+        try {
+            adminDAO.addUser(admin);
+            librarianDAO.addUser(librarian);
+            rootDAO.addUser(rootUser);
+            
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+
 }
