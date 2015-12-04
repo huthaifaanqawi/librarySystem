@@ -12,6 +12,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import Main.Main;
+import dao.IStoragePath;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.stage.FileChooser;
 
 /**
@@ -93,5 +97,26 @@ public class util {
                             e.printStackTrace();                            
             }
 	}
+    
+    public static void createInitialStorageDirs() {
+        List<File> folderList = new ArrayList<File>();
+        boolean success;
+        
+        
+        folderList.add(new File(IStoragePath.OUTPUT_DIR + "bookCopy"));
+        folderList.add(new File(IStoragePath.OUTPUT_DIR + "book"));
+        folderList.add(new File(IStoragePath.OUTPUT_DIR + "checkoutEntry"));
+        folderList.add(new File(IStoragePath.OUTPUT_DIR + "checkoutRecord"));
+        folderList.add(new File(IStoragePath.OUTPUT_DIR + "member"));
+        folderList.add(new File(IStoragePath.OUTPUT_DIR + "user"));
+        
+        
+        for (File folder : folderList ) {
+            if (!folder.exists()) {
+                success = folder.mkdirs();
+            }
+        }
+        
+    }
     
 }
