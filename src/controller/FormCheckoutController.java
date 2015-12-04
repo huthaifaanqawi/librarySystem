@@ -5,6 +5,7 @@
  */
 package controller;
 
+import dao.BookCopyDao;
 import dao.BookDao;
 import dao.CheckoutEntryDAO;
 import dao.CheckoutRecordDAO;
@@ -60,6 +61,8 @@ public class FormCheckoutController extends SaveFormBaseController {
     CheckoutRecordDAO checkoutRecordDAO = new CheckoutRecordDAO();
 
     CheckoutEntryDAO checkoutEntryDAO = new CheckoutEntryDAO();
+    
+    BookCopyDao bookCopyDao = new BookCopyDao();
     /**
      * Initializes the controller class.
      */
@@ -76,6 +79,8 @@ public class FormCheckoutController extends SaveFormBaseController {
         List<String> book_titles = new ArrayList<>();
         List<String> book_isbns = new ArrayList<>();
         for (Book book : books) {
+            List<BookCopy> copies = bookCopyDao.getBookCopiesByISBN(book.getIsbn());
+            if(copies.isEmpty())continue;
             book_titles.add(book.getTitle());
             book_isbns.add(book.getIsbn());
         }
@@ -95,6 +100,16 @@ public class FormCheckoutController extends SaveFormBaseController {
         checkoutEntry.setCheckoutRecord(checkoutRecord);
         checkoutRecord.setLibraryMember(libraryMember);
         BookCopy bookCopy = new BookCopy();
+        List<BookCopy> copies = bookCopyDao.getBookCopiesByISBN(boxBook.getValue().toString());
+        if(!copies.isEmpty()){//new
+            bookCopy.setAvailable(false);
+            bookCopy.setIsbn(copies.get(0).getIsbn());
+            bookCopy.setCopynumber(copies.get(0).getCopynumber());
+            Book book = new Book();
+            book.setIsbn(boxBook.getValue().toString());
+            bookCopy.setBook(book);
+        }
+        //write the book copy to modify availability
         bookCopy.setCopynumber("12");
         bookCopy.setIsbn(boxBook.getValue().toString());
         checkoutEntry.setBookCopy(bookCopy);

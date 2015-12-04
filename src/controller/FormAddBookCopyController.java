@@ -5,6 +5,7 @@
  */
 package controller;
 
+import dao.BookCopyDao;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -12,6 +13,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Book;
+import model.BookCopy;
 import util.util;
 
 /**
@@ -28,27 +31,45 @@ public class FormAddBookCopyController extends SaveFormBaseController {
     private TextField titleField;
 
     @FXML
+    private TextField copyNumField;
+    
+    @FXML
     private Button addButton;
+    
+    BookCopyDao bookCopyDao = new BookCopyDao();
     
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         // TODO
     }    
     
     
     @FXML
-    private void btnAddBookCopyAction(ActionEvent event) {
-        util.log("Adding book copy...");
-        
+    private void btnAddBookCopyAction(ActionEvent event)throws Exception {
+        BookCopy copy = new BookCopy();
+        copy.setCopynumber(copyNumField.getText());
+        copy.setIsbn(isbnField.getText());
+        Book book = new Book();
+        book.setIsbn(isbnField.getText());
+        copy.setBook(book);
+        copy.setAvailable(true);
+        bookCopyDao.addBookCopy(copy);     
         Stage stage = (Stage) addButton.getScene().getWindow();
-        
-        //Implements save copy method here
-        
         stage.close();
         
     }
+
+    public TextField getIsbnField() {
+        return isbnField;
+    }
+
+    public TextField getTitleField() {
+        return titleField;
+    }
+
 
 }

@@ -95,7 +95,6 @@ public class FormCheckoutRecordController extends SaveFormBaseController {
         TableColumn book = getTableColumnByName(tableView, "Book");
         TableColumn Checkout_Date = getTableColumnByName(tableView, "Checkout Date");
         TableColumn Return_Date = getTableColumnByName(tableView, "Return Date");
-
         tableView.setItems(FXCollections.observableList(entries));
         checkoutID.setCellValueFactory(new PropertyValueFactory<CheckoutEntry, String>("id"));
         member.setCellValueFactory(new PropertyValueFactory<CheckoutEntry, String>("checkoutRecord"));

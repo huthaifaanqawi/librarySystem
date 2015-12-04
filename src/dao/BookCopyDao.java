@@ -5,8 +5,10 @@
  */
 package dao;
 
+import com.sun.javafx.scene.control.skin.VirtualFlow;
 import static dao.BookDao.OUTPUT_DIR;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import model.Book;
 import model.BookCopy;
@@ -35,8 +37,18 @@ public class BookCopyDao {
     }
     
     public BookCopy getBookCopyByBookIsbn(String isbn){
-        System.out.println("Implement");
         return DataAccessUtil.readGenericObject(OUTPUT_DIR, isbn);
+    }
+    
+    public List<BookCopy> getBookCopiesByISBN(String isbn){
+        List<BookCopy> copies = DataAccessUtil.readAllObject(OUTPUT_DIR);
+        List<BookCopy> bookCopies = new ArrayList<>();
+        for(int i=0 ; i<copies.size() ; i++){
+            if(copies.get(i).getIsbn().equals(isbn) && copies.get(i).isAvailable()){
+                bookCopies.add(copies.get(i));
+            }
+        }
+        return bookCopies;
     }
     
     
