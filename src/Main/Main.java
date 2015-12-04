@@ -57,7 +57,7 @@ public class Main extends Application {
         try {
             adminDAO.addUser(admin);
             librarianDAO.addUser(librarian);
-            rootDAO.addUser(librarian);
+            rootDAO.addUser(rootUser);
             
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
