@@ -21,6 +21,7 @@ import java.util.Optional;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import model.SystemUser;
 
 /**
@@ -35,28 +36,31 @@ public class FormMainController implements Initializable {
     }
     
     @FXML
-    public Button checkoutButton;
+    private Button checkoutButton;
 
     @FXML
-    public Button checkoutRecordButton;
+    private Button checkoutRecordButton;
 
     @FXML
-    public Button addMemberButton;
+    private Button addMemberButton;
 
     @FXML
-    public Button editMemberButton;
+    private Button editMemberButton;
 
     @FXML
-    public Button addBookButton;
+    private Button addBookButton;
 
     @FXML
-    public Button books;
+    private Button books;
 
     @FXML
-    public Button logoffButton;
+    private Button logoffButton;
 
     @FXML
     public Button closeButton;
+    
+    @FXML
+    private Label userLoggedLabel;
     
     private SystemUser user = new SystemUser();
     
@@ -71,6 +75,8 @@ public class FormMainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
+        String role;
+        
         util.log("Setting buttons according privileges");
         checkoutButton.setDisable(true);
         checkoutRecordButton.setDisable(true);
@@ -78,6 +84,14 @@ public class FormMainController implements Initializable {
         editMemberButton.setDisable(true);
         addBookButton.setDisable(true);
         books.setDisable(true);
+        
+        if (user.getRole() == SystemUser.AuthorizationLevel.BOTH)
+            role = "ADMINISTRATOR/LIBRARIAN";
+        else
+            role = user.getRole().toString();
+        
+        userLoggedLabel.setText("Logged as " + user.getUsername() + " (" + role + ")");
+        
         
         if ((user.getRole() == SystemUser.AuthorizationLevel.ADMINISTRATOR) || (user.getRole() == SystemUser.AuthorizationLevel.BOTH) ) {
             util.log("User has Administrator privileges");
