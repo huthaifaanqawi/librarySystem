@@ -25,6 +25,8 @@ import javafx.scene.Scene;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.FlowPane;
 import model.SystemUser;
 
@@ -69,20 +71,21 @@ public class FormLoginController implements Initializable {
 
     
     @FXML
-    public void handleOnEnter(ActionEvent event) {
+    public void handleEnterPressed(KeyEvent event) {
         
-        if (true) {
-            handleSignInButtonAction(event);
+        if (event.getCode() == KeyCode.ENTER) {
+            handleSignInButtonAction();
         }
     }
     
     @FXML
-    public void handleSignInButtonAction(ActionEvent event) {
+    public void handleSignInButtonAction() {
 
         boolean isNull = true;
         boolean invalidUsername = true;
         boolean invalidPassword = true;
         
+                
         Stage mainStage = new Stage();
         
         Stage stage = (Stage) cancelButton.getScene().getWindow();
