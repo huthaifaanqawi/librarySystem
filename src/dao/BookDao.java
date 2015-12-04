@@ -24,15 +24,7 @@ public class BookDao {
        //if the listCopies in book object is not null -> we should store each book copy in the folder bookCopy
        List<BookCopy> copies = book.getCopies(); 
        book.setCopies(null);
-       
-       String isbn = book.getIsbn();
-        if (copies != null) 
-            for (BookCopy copy : copies ) {
-                copy.setIsbn(isbn);
-                bookCopyDAO.addBookCopy(copy);
-            }
-        
-        DataAccessUtil.saveObject(OUTPUT_DIR, book.getIsbn(), book);       
+       DataAccessUtil.saveObject(OUTPUT_DIR, book.getIsbn(), book);       
        
     }
     
