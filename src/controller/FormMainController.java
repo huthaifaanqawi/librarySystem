@@ -90,7 +90,8 @@ public class FormMainController implements Initializable {
         else
             role = user.getRole().toString();
         
-        userLoggedLabel.setText("Logged as " + user.getUsername() + " (" + role + ")");
+        
+        userLoggedLabel.setText(user.getUsername() + " (" + role.toLowerCase() + ")");
         
         
         if ((user.getRole() == SystemUser.AuthorizationLevel.ADMINISTRATOR) || (user.getRole() == SystemUser.AuthorizationLevel.BOTH) ) {
