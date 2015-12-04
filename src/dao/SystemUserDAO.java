@@ -6,6 +6,7 @@
 package dao;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
