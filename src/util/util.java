@@ -12,6 +12,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import Main.Main;
+import dao.BookCopyDao;
+import dao.BookDao;
 import dao.IStoragePath;
 import dao.SystemUserDAO;
 import java.io.IOException;
@@ -21,6 +23,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.stage.FileChooser;
+import model.Book;
+import model.BookCopy;
 import model.SystemUser;
 
 /**
@@ -147,13 +151,34 @@ public class util {
         SystemUserDAO rootDAO = new SystemUserDAO();
         
         
+        /*Book book = new Book();
+        book.setIsbn("1111111111111");
+        book.setTitle("Computer Networks");
+        BookDao bookDAO = new BookDao();
+
+        BookCopy bookCopy = new BookCopy();
+        bookCopy.setBook(book);
+        bookCopy.setCopynumber("11111");
+        BookCopyDao bookCopyDAO = new BookCopyDao();
         
-        
+        Book book2 = new Book();
+        book2.setIsbn("2222222222222");
+        book2.setTitle("Java for Dummies");
+        BookDao bookDAO2 = new BookDao();
+        BookCopy bookCopy2 = new BookCopy ();
+        bookCopy2.setBook(book2);
+        bookCopy2.setCopynumber("22222");
+        BookCopyDao bookCopyDAO2 = new BookCopyDao();
+        */
         
         try {
             adminDAO.addUser(admin);
             librarianDAO.addUser(librarian);
             rootDAO.addUser(rootUser);
+            //bookDAO.addBook(book);
+            //bookDAO2.addBook(book2);
+            //bookCopyDAO.addBookCopy(bookCopy);
+            //bookCopyDAO2.addBookCopy(bookCopy2);
             
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);

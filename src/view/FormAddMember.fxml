@@ -39,28 +39,20 @@
                <GridPane.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </GridPane.margin></TextField>
+            <Label alignment="CENTER" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="81.0" text="State:" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
             <TextField fx:id="phoneNumber" promptText="Phone number must contain only numbers" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </GridPane.margin></TextField>
-            <ComboBox fx:id="city" prefHeight="25.0" prefWidth="400.0" promptText="Select city" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-               </GridPane.margin></ComboBox>
-            <Button fx:id="add" mnemonicParsing="false" onAction="#addMember" prefHeight="35.0" prefWidth="135.0" text="Add" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="8" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets left="10.0" />
-               </GridPane.margin></Button>
-            <Button fx:id="cancelButton" cancelButton="true" mnemonicParsing="false" onAction="#handleCancelButtonAction" prefHeight="35.0" prefWidth="135.0" text="Cancel" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="8" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets right="10.0" />
-               </GridPane.margin></Button>
-            <Label alignment="CENTER" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="81.0" text="State:" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
             <ComboBox fx:id="state" prefHeight="25.0" prefWidth="398.0" promptText="Select state" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </GridPane.margin>
             </ComboBox>
+            <ComboBox fx:id="city" prefHeight="25.0" prefWidth="400.0" promptText="Select city" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </GridPane.margin></ComboBox>
             <Label alignment="CENTER" text="Street:" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
             <Label contentDisplay="CENTER" text="Zip:" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
             <TextField fx:id="street" promptText="Enter non empty street" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
@@ -73,6 +65,14 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </GridPane.margin>
             </TextField>
+            <Button fx:id="add" mnemonicParsing="false" onAction="#addMember" prefHeight="35.0" prefWidth="135.0" text="Add" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin></Button>
+            <Button fx:id="cancelButton" cancelButton="true" mnemonicParsing="false" onAction="#handleCancelButtonAction" prefHeight="35.0" prefWidth="135.0" text="Cancel" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin></Button>
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="22.0" prefWidth="600.0" text="Add Member" textAlignment="CENTER" GridPane.columnSpan="2">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
