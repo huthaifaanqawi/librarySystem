@@ -17,6 +17,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,6 +26,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Book;
@@ -32,6 +35,7 @@ import model.CheckoutEntry;
 import model.CheckoutRecord;
 import model.LibraryMember;
 import util.FieldValidator;
+import util.Message;
 import util.util;
 
 /**
@@ -41,6 +45,13 @@ import util.util;
  */
 public class FormCheckoutController extends SaveFormBaseController {
 
+    @FXML
+    private Text firstName;//set when member ID selected    
+    
+    @FXML
+    private Text lastName;
+    
+    
     @FXML
     private Button exportButton;
 
@@ -61,18 +72,31 @@ public class FormCheckoutController extends SaveFormBaseController {
 
     CheckoutEntryDAO checkoutEntryDAO = new CheckoutEntryDAO();
     
-    BookCopyDao bookCopyDao = new BookCopyDao();
+    BookCopyDao bookCopyDao = new BookCopyDao();    
+   
     /**
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb) {        
+        //Initialize members combobox
         List<LibraryMember> members = memberDAO.getAllLibraryMembers();
         List<String> member_ids = new ArrayList<>();
         for (LibraryMember member : members) {
             member_ids.add(member.getId());
         }
         member.setItems(FXCollections.observableArrayList(member_ids));
+        
+        //set onchange action of comboBox
+        member.valueProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue ov, String oldValue, String newValue) {              
+                //when selection changed -> fill the fields first name and last name
+                LibraryMember selectedMember = memberDAO.getLibraryMember(newValue);
+                firstName.setText("First Name: " + selectedMember.getFirstName());
+                lastName.setText("Last Name: " + selectedMember.getLastName());
+            }
+        });
 
         List<Book> books = bookDAO.getAllBooks();
         List<String> book_titles = new ArrayList<>();
@@ -119,8 +143,9 @@ public class FormCheckoutController extends SaveFormBaseController {
             checkoutRecord.setId(checkoutRecordID);
             checkoutEntry.setCheckoutRecord(checkoutRecord);
             checkoutEntryDAO.addCheckoutEntry(checkoutEntry);
+            Message.showSuccessMessage("Add Checkout Record", "Saving Checkout Record Sucess", "");            
         } catch (Exception e) {
-            e.printStackTrace();
+           Message.showErrorMessage("Add Checkout Record", "Saving Checkout Record Failed. Exception message: ",  e.getMessage());  
         }
     }
 

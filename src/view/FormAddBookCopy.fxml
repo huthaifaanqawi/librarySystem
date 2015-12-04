@@ -67,7 +67,7 @@
                   <Insets right="10.0" />
                </GridPane.margin>
             </Label>
-            <TextField fx:id="copyNumField" prefHeight="29.0" prefWidth="282.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <TextField fx:id="copyNumField" prefHeight="29.0" prefWidth="282.0" promptText="Enter alphabets or numbers only" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets left="10.0" right="10.0" />
                </GridPane.margin>

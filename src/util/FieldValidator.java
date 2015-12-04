@@ -27,6 +27,10 @@ public class FieldValidator {
        return datePickerValue != null;  
     }
     
+    //String contain only numbers or alphabet
+    public static boolean isAlphaNumeric (String fieldValue){
+       return fieldValue.matches("^[a-zA-Z0-9]*$");      
+    }
     
 
 }

@@ -49,7 +49,7 @@
                   <Font size="36.0" />
                </font>
             </Label>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" wrappingWidth="194.68292617797852" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+            <Text fx:id="firstName" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="194.68292617797852" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
                <GridPane.margin>
                   <Insets right="10.0" top="20.0" />
                </GridPane.margin>
@@ -57,7 +57,7 @@
                   <Font size="14.0" />
                </font>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name" wrappingWidth="194.68292617797852" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+            <Text fx:id="lastName" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="194.68292617797852" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                <font>
                   <Font size="14.0" />
                </font>

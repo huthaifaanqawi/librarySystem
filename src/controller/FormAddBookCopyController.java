@@ -15,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Book;
 import model.BookCopy;
+import util.FieldValidator;
 
 /**
  * FXML Controller class
@@ -42,13 +43,19 @@ public class FormAddBookCopyController extends SaveFormBaseController {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        // TODO
+        isbnField.setDisable(true);        
+        titleField.setDisable(true);  
     }    
     
     
     @FXML
     private void btnAddBookCopyAction(ActionEvent event)throws Exception {
+       
+        //Validation  
+        if ( !validate() ) // if not valid don't continu, just return to the form
+            return;        
+        
+        
         BookCopy copy = new BookCopy();
         copy.setCopynumber(copyNumField.getText());
         copy.setIsbn(isbnField.getText());
@@ -72,7 +79,26 @@ public class FormAddBookCopyController extends SaveFormBaseController {
 
     @Override
     void validateAllFields() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //validate isbn
+        if (!isValidCopyNumber()) {
+            if (!invalidFields.contains("Copy Number")) {
+                invalidFields.add("Copy Number");
+                copyNumField.setStyle(INVALID_STYLE_BORDER);
+            }
+        } else {
+            invalidFields.remove("Copy Number");
+            copyNumField.setStyle(VALID_STYLE_BORDER);
+        }
+    }
+    
+    //Fields validation methods:
+    
+    //Copy Number: valid if non empty and isAlphaNumerice
+    private boolean isValidCopyNumber(){
+        String textValue = copyNumField.getText();
+        if (!FieldValidator.isEmpty(textValue) && FieldValidator.isAlphaNumeric(textValue)) 
+            return true;        
+        return false;
     }
 
 

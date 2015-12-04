@@ -13,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model.Address;
 import model.LibraryMember;
@@ -46,13 +47,14 @@ public class FormAddMemberController extends SaveFormBaseController {
     @FXML
     private TextField street;
     
-    @FXML
+    @FXML   
     private TextField zip;
     
-    private MemberDAO memberDAO;
-    
+    private MemberDAO memberDAO;  
+       
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        
         state.getItems().clear();
 
         state.getItems().addAll(

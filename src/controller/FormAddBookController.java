@@ -51,8 +51,7 @@ public class FormAddBookController extends SaveFormBaseController {
     }  
     
     @FXML
-    private void btnSaveAction(ActionEvent event) {
-        System.out.println("Implement Save");
+    private void btnSaveAction(ActionEvent event) {        
 
         //Validation  
         if ( !validate() ) // if not valid don't continu, just return to the form
@@ -62,31 +61,18 @@ public class FormAddBookController extends SaveFormBaseController {
         Book book = new Book();
         book.setIsbn(txtISBN.getText());
         book.setTitle(txtTitle.getText());
-        List<BookCopy> copiesList = new ArrayList<BookCopy>();
-        BookCopy c1 = new BookCopy();
-        c1.setCopynumber("123123");
-        copiesList.add(c1);
+        System.out.println("Continue Implement Save");
         
-        BookCopy c2 = new BookCopy();
-        c2.setCopynumber("222333");
-        copiesList.add(c2);
+        List<BookCopy> copiesList = new ArrayList<>();   
         
-        book.setCopies(copiesList);
-        
-     
-        
-        BookDao bookDao = new BookDao();
-       
+        BookDao bookDao = new BookDao();       
         try {
             bookDao.addBook(book);
             Message.showSuccessMessage("Add Book", "Saving Book Sucess", "");            
         } catch (IOException ex) {
             Message.showErrorMessage("Add Book", "Saving Book Failed. Exception message: ",  ex.getMessage());          
             
-        }
-        
-        
-        
+        }    
     }
     
     //this method validate each field, and if it is not valid -> it is added to the list
