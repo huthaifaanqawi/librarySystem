@@ -15,7 +15,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Book;
 import model.BookCopy;
-import util.util;
 
 /**
  * FXML Controller class
@@ -69,6 +68,11 @@ public class FormAddBookCopyController extends SaveFormBaseController {
 
     public TextField getTitleField() {
         return titleField;
+    }
+
+    @Override
+    void validateAllFields() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 

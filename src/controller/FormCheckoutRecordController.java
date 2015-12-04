@@ -11,13 +11,11 @@ import dao.CheckoutEntryDAO;
 import dao.CheckoutRecordDAO;
 import dao.MemberDAO;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -26,7 +24,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
@@ -36,7 +33,6 @@ import model.BookCopy;
 import model.CheckoutEntry;
 import util.util;
 import model.CheckoutRecord;
-import model.LibraryMember;
 
 /**
  * FXML Controller class
@@ -193,6 +189,11 @@ public class FormCheckoutRecordController extends SaveFormBaseController {
             }
         }
         return null;
+    }
+
+    @Override
+    void validateAllFields() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
    
     

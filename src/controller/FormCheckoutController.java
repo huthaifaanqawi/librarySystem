@@ -15,13 +15,11 @@ import java.io.FileWriter;
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
@@ -33,6 +31,7 @@ import model.BookCopy;
 import model.CheckoutEntry;
 import model.CheckoutRecord;
 import model.LibraryMember;
+import util.FieldValidator;
 import util.util;
 
 /**
@@ -46,10 +45,10 @@ public class FormCheckoutController extends SaveFormBaseController {
     private Button exportButton;
 
     @FXML
-    private ChoiceBox boxBook;
+    private ChoiceBox<String> boxBook;
 
     @FXML
-    private ComboBox member;
+    private ComboBox<String> member;
     
     @FXML
     private DatePicker dueDate;
@@ -90,6 +89,10 @@ public class FormCheckoutController extends SaveFormBaseController {
 
     @FXML
     public void handleSubmitAction() {
+        //Fields Validation        
+        if ( !validate() ) // if not valid don't continu, just return to the form
+            return; 
+        
         CheckoutRecord checkoutRecord = new CheckoutRecord();
         LibraryMember libraryMember = new LibraryMember();
         libraryMember.setId(member.getValue().toString());
@@ -164,6 +167,60 @@ public class FormCheckoutController extends SaveFormBaseController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    void validateAllFields() {        
+        //validate member
+        if (!isValidMember()) {
+            if (!invalidFields.contains("ID")) {
+                invalidFields.add("ID");
+                member.setStyle(INVALID_STYLE_BORDER);                
+            }
+        } else {
+            invalidFields.remove("ID");
+            member.setStyle(VALID_STYLE_BORDER);
+        }
+        
+        //validate Book
+        if (!isValidBook()) {
+            if (!invalidFields.contains("Book")) {
+                invalidFields.add("Book");
+                boxBook.setStyle(INVALID_STYLE_BORDER);                
+            }
+        } else {
+            invalidFields.remove("Book");
+            boxBook.setStyle(VALID_STYLE_BORDER);
+        }
+        
+        //validate Due Date
+        if (!isValidDueDate()) {
+            if (!invalidFields.contains("Due Date")) {
+                invalidFields.add("Due Date");
+                dueDate.setStyle(INVALID_STYLE_BORDER);
+            }
+        } else {
+            invalidFields.remove("Due Date");
+             dueDate.setStyle(VALID_STYLE_BORDER);
+        }
+        
+    }
+    
+    //Fields validation methods:
+    
+    //ComboBox (ID, member). To be valid it must be selected
+    private boolean isValidMember(){       
+        return !FieldValidator.isEmpty(member.getValue());
+    }
+    
+    //Book field. To be valid it must be selected
+    private boolean isValidBook(){        
+        return !FieldValidator.isEmpty(boxBook.getValue());
+    }
+    
+    //Due Date field. To be valid it must be filled
+    private boolean isValidDueDate(){       
+        return FieldValidator.isValidDatePickerValue(dueDate.getValue());       
     }
 
 }

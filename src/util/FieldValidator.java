@@ -3,6 +3,8 @@ This class contains static method for validaion the values of the field
  */
 package util;
 
+import java.time.LocalDate;
+
 public class FieldValidator {
 
     public static boolean isEmpty(String value) {
@@ -20,6 +22,11 @@ public class FieldValidator {
         
         return fieldValue.matches("[A-Za-z ]+");      
     }
+    
+    public static boolean isValidDatePickerValue(LocalDate datePickerValue){
+       return datePickerValue != null;  
+    }
+    
     
 
 }

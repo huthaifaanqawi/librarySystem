@@ -11,14 +11,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.Alert.AlertType;
 import model.Book;
 import model.BookCopy;
 import util.FieldValidator;
@@ -50,38 +45,16 @@ public class FormAddBookController extends SaveFormBaseController {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        cmbCheckoutLength.getItems().addAll(7, 21); //possible values of the comboBox 
-        
-
-        //Validations
-        txtISBN.focusedProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldValue, Boolean newValue) {
-                if (!newValue) { //when focus lost
-                    String textValue = txtISBN.getText();
-                    if (FieldValidator.isEmpty(textValue) || !FieldValidator.isNumericOnly(textValue) || textValue.length() != 13) {
-                        //when it not valid, set the textField to right message and add the field to invalidFields
-                        txtISBN.setText(txtISBN.getText() + " Enter 13 digit number");                        
-                        txtISBN.setStyle(INVALID_STYLE);
-                        if (!invalidFields.contains("ISBN"))
-                            invalidFields.add("ISBN");
-                    } else {//if it is valid, remove it from the list (either it added before or not) if not added before, nothing removed
-                        invalidFields.remove("ISBN");
-                        //txtISBN.setStyle("-fx-background-color: white;");
-                        txtISBN.setStyle(VALID_STYLE);
-                    }
-                }
-            }
-        });
-
-        
-    } 
+    public void initialize(URL url, ResourceBundle rb) {        
+        cmbCheckoutLength.getItems().addAll(7, 21); //possible values of the comboBox
+        cmbCheckoutLength.setValue(7);//set default
+    }  
     
     @FXML
     private void btnSaveAction(ActionEvent event) {
         System.out.println("Implement Save");
 
+        //Validation  
         if ( !validate() ) // if not valid don't continu, just return to the form
             return;        
         
@@ -116,9 +89,50 @@ public class FormAddBookController extends SaveFormBaseController {
         
     }
     
-    
-    
-    
-           
+    //this method validate each field, and if it is not valid -> it is added to the list
+    //called from Template method validate
+    @Override
+    void validateAllFields() {
 
-}
+        //validate isbn
+        if (!isValidIsbn()) {
+            if (!invalidFields.contains("ISBN")) {
+                invalidFields.add("ISBN");
+                txtISBN.setStyle(INVALID_STYLE_BORDER);
+            }
+        } else {
+            invalidFields.remove("ISBN");
+            txtISBN.setStyle(VALID_STYLE_BORDER);
+        }
+        
+        //validate title
+        if (!isValidTitle()) {
+            if (!invalidFields.contains("Title")) {
+                invalidFields.add("Title");
+                txtTitle.setStyle(INVALID_STYLE_BORDER);
+            }
+        } else {
+            invalidFields.remove("Title");
+            txtTitle.setStyle(VALID_STYLE_BORDER);
+        }
+
+    }
+       
+    //Fields validation methods:
+    
+    //ISBN:
+    private boolean isValidIsbn(){
+        String textValue = txtISBN.getText();
+        if (!FieldValidator.isEmpty(textValue) && FieldValidator.isNumericOnly(textValue) && textValue.length() == 13) 
+            return true;        
+        return false;
+    }
+    
+    //Title, may contain numbers or other symbols (e.g. physics 141 & ..)
+    private boolean isValidTitle(){        
+        if (FieldValidator.isEmpty(txtTitle.getText())) 
+            return false;        
+        return true;
+    }  
+        
+    }

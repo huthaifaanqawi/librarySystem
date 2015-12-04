@@ -30,8 +30,12 @@ public abstract class SaveFormBaseController implements Initializable {
     List<String> invalidFields;//to add the invlaid fields    
     private final Alert errorValidationAlert;//the object that will show the error if the fields are invalid
     
-    static final String INVALID_STYLE = "-fx-text-fill: red;-fx-font-weight: bold;";
-    static final String VALID_STYLE = "-fx-text-fill: black;-fx-font-weight: black;;";
+    static final String INVALID_STYLE_TEXT = "-fx-text-fill: red;-fx-font-weight: bold;";
+    static final String VALID_STYLE_TEXT = "-fx-text-fill: black;-fx-font-weight: black;";
+    static final String INVALID_STYLE_BACKGROUND = "-fx-background-color: red;";
+    static final String VALID_STYLE_BACKGROUND = "-fx-background-color: white;";
+    static final String INVALID_STYLE_BORDER = "-fx-border-color: red;";
+    static final String VALID_STYLE_BORDER = "-fx-border-color: gray;";
     
 
     SaveFormBaseController() {
@@ -60,6 +64,7 @@ public abstract class SaveFormBaseController implements Initializable {
       if, there are invalid field -> show message and return false
      */
     boolean validate() {
+        validateAllFields();
         if (!invalidFields.isEmpty()) {
             errorValidationAlert.setContentText(invalidFields.toString());
             errorValidationAlert.showAndWait();
@@ -67,5 +72,9 @@ public abstract class SaveFormBaseController implements Initializable {
         }
         return true;
     }
+    
+    //this metod should be overriden in each subclass to add the non valid fields to list invalidFields
+    //if the field is valid, remove it from the list (either it added before or not) if not added before, nothing removed
+    abstract  void validateAllFields();
 
 }

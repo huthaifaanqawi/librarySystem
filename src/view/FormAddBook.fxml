@@ -30,12 +30,12 @@
                   <Insets right="10.0" />
                </GridPane.margin>
             </Label>
-            <TextField fx:id="txtISBN" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <TextField fx:id="txtISBN" promptText="Enter 13 digit number" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
             </TextField>
-            <TextField fx:id="txtTitle" prefHeight="25.0" prefWidth="330.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <TextField fx:id="txtTitle" prefHeight="25.0" prefWidth="330.0" promptText="Enter book title" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>

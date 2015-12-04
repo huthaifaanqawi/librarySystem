@@ -39,11 +39,11 @@
                <GridPane.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </GridPane.margin></TextField>
-            <TextField fx:id="phoneNumber" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <TextField fx:id="phoneNumber" promptText="Phone number must contain only numbers" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </GridPane.margin></TextField>
-            <ComboBox fx:id="city" prefHeight="25.0" prefWidth="400.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+            <ComboBox fx:id="city" prefHeight="25.0" prefWidth="400.0" promptText="Select city" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </GridPane.margin></ComboBox>
@@ -56,19 +56,19 @@
                   <Insets right="10.0" />
                </GridPane.margin></Button>
             <Label alignment="CENTER" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="81.0" text="State:" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-            <ComboBox fx:id="state" prefHeight="25.0" prefWidth="398.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <ComboBox fx:id="state" prefHeight="25.0" prefWidth="398.0" promptText="Select state" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </GridPane.margin>
             </ComboBox>
             <Label alignment="CENTER" text="Street:" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
             <Label contentDisplay="CENTER" text="Zip:" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
-            <TextField fx:id="street" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+            <TextField fx:id="street" promptText="Enter non empty street" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </GridPane.margin>
             </TextField>
-            <TextField fx:id="zip" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+            <TextField fx:id="zip" promptText="Enter 5 digits only zip number" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </GridPane.margin>
