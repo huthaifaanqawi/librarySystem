@@ -25,6 +25,7 @@ import javafx.scene.Scene;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.layout.FlowPane;
 import model.SystemUser;
 
 /**
@@ -111,12 +112,40 @@ public class FormLoginController implements Initializable {
         }
         else {
             userDAO.setUser(user);
-            user.setRole(userDAO.getUser().getRole());
+            user.setRole(userDAO.getUser(user.getUsername()).getRole());
+            
+            
+            
             try {
 
                 util.log("Starting Main Frame...");
                 util.log("Setting FXML file");
-                Parent root = FXMLLoader.load(getClass().getResource("/view/FormMain.fxml"));
+
+            /*
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/FormAddBookCopy.fxml"));
+                    try {
+                        Parent root = (Parent) fxmlLoader.load();
+                        FormAddBookCopyController controller = fxmlLoader.<FormAddBookCopyController>getController();
+                        controller.getIsbnField().setText(book.getIsbn());
+                        controller.getTitleField().setText(book.getTitle());
+                        Scene scene = new Scene(root);
+                        Stage stage = new Stage();
+                        stage.setScene(scene);
+                        stage.show();            
+            */
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/FormMain.fxml"));
+                
+                //Parent root = FXMLLoader.load(getClass().getResource("/view/FormMain.fxml"));
+                
+                FormMainController controller = new FormMainController(user);
+                        
+                loader.setController(controller);
+                Parent root = (Parent) loader.load(); 
+                
+                controller.setUser(user);
+                
+                
                 util.log("Loading FXML scene for Main Frame");
 
                 util.log("Setting scene");
@@ -128,6 +157,8 @@ public class FormLoginController implements Initializable {
                 //closing previous screen (login screen)
                 util.log("Closing previous form");
                 stage.close();
+                
+                
                 mainStage.show();
             }
             catch(Exception e) {
