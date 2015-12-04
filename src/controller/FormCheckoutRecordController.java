@@ -5,6 +5,8 @@
  */
 package controller;
 
+import dao.BookCopyDao;
+import dao.BookDao;
 import dao.CheckoutEntryDAO;
 import dao.CheckoutRecordDAO;
 import dao.MemberDAO;
@@ -65,7 +67,9 @@ public class FormCheckoutRecordController extends SaveFormBaseController {
     
     CheckoutEntryDAO entryDAO = new CheckoutEntryDAO();
     
+    BookCopyDao bookCopyDAO = new BookCopyDao();
     
+    BookDao bookDao = new BookDao();
     /**
      * Initializes the controller class.
      */
@@ -80,11 +84,11 @@ public class FormCheckoutRecordController extends SaveFormBaseController {
     }
     
     public void loadTableView() {
-        CheckoutRecord cr = new CheckoutRecord();
-        List<LibraryMember> members = memberDAO.getAllLibraryMembers();
-        List<CheckoutEntry> entries = new ArrayList<>();
-        for (int i = 0; i < members.size(); i++) {
-            entries.addAll(members.get(i).getCheckoutRecord().getCheckoutEntries());
+        List<CheckoutEntry> entries = entryDAO.getAllCheckoutEntries();
+        for(int i=0 ; i<entries.size() ; i++){
+            entries.get(i).setCheckoutRecord(checkoutRecordDAO.getCheckoutRecordByID(entries.get(i).getCheckoutRecord()));
+            entries.get(i).getBookCopy().setBook(bookDao.getBookByIsbn(entries.get(i).getBookCopy().getIsbn()));
+            entries.get(i).getCheckoutRecord().setLibraryMember(memberDAO.getLibraryMember(entries.get(i).getCheckoutRecord().getLibraryMember().getId()));
         }
         TableColumn checkoutID = getTableColumnByName(tableView, "CheckoutID");
         TableColumn member = getTableColumnByName(tableView, "Member");

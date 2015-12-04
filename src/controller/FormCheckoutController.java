@@ -74,10 +74,13 @@ public class FormCheckoutController extends SaveFormBaseController {
 
         List<Book> books = bookDAO.getAllBooks();
         List<String> book_titles = new ArrayList<>();
+        List<String> book_isbns = new ArrayList<>();
         for (Book book : books) {
             book_titles.add(book.getTitle());
+            book_isbns.add(book.getIsbn());
         }
-        boxBook.setItems(FXCollections.observableArrayList(book_titles));
+        boxBook.setItems(FXCollections.observableArrayList(book_isbns));
+        //boxBook.setItems(FXCollections.observableArrayList(book_titles));
     }
 
     @FXML
@@ -92,7 +95,8 @@ public class FormCheckoutController extends SaveFormBaseController {
         checkoutEntry.setCheckoutRecord(checkoutRecord);
         checkoutRecord.setLibraryMember(libraryMember);
         BookCopy bookCopy = new BookCopy();
-        bookCopy.setCopynumber("123456");
+        bookCopy.setCopynumber("12");
+        bookCopy.setIsbn(boxBook.getValue().toString());
         checkoutEntry.setBookCopy(bookCopy);
         try {
             checkoutRecordDAO.addCheckoutRecord(checkoutRecord);

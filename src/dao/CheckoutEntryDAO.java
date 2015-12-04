@@ -5,6 +5,7 @@
  */
 package dao;
 
+import java.util.List;
 import model.CheckoutEntry;
 import util.FolderReader;
 
@@ -19,5 +20,10 @@ public class CheckoutEntryDAO {
         String lastID = FolderReader.getLastFileName(OUTPUT_DIR);
         checkoutEntry.setId((Integer.parseInt(lastID)+1)+"");
         DataAccessUtil.saveObject(OUTPUT_DIR, checkoutEntry.getId(), checkoutEntry); 
+    }
+    
+    public List<CheckoutEntry> getAllCheckoutEntries(){
+        List<CheckoutEntry> checkoutentries = DataAccessUtil.readAllObject(OUTPUT_DIR);
+        return checkoutentries;
     }
 }

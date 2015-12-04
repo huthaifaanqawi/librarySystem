@@ -39,4 +39,14 @@ public class CheckoutRecordDAO {
             DataAccessUtil.saveObject(OUTPUT_DIR, checkoutRecord.getId(), checkoutRecord); 
         }
     }
+    
+    public CheckoutRecord getCheckoutRecordByID(CheckoutRecord checkoutRecord){
+        List<CheckoutRecord> checkoutRecords = DataAccessUtil.readAllObject(OUTPUT_DIR);
+        for(CheckoutRecord cr:checkoutRecords){
+            if(checkoutRecord.getId().equals(cr.getId())){
+                return cr;
+            }
+        }
+        return null;
+    }
 }

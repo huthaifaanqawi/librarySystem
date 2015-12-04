@@ -28,7 +28,7 @@ public class BookDao {
        String isbn = book.getIsbn();
         if (copies != null) 
             for (BookCopy copy : copies ) {
-                copy.setIsbn(isbn);                
+                copy.setIsbn(isbn);
                 bookCopyDAO.addBookCopy(copy);
             }
         
