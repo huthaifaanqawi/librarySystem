@@ -58,20 +58,20 @@ public class FormAddMemberController extends SaveFormBaseController {
         state.getItems().clear();
 
         state.getItems().addAll(
-                "Palestine",
-                "Germany",
-                "British",
-                "china",
-                "japan");
+                "IOWA",
+                "Texas",
+                "Illinoi",
+                "Canada",
+                "Ohio");
         
         city.getItems().clear();
 
         city.getItems().addAll(
-                "Ramallah",
-                "Nablus",
-                "Jenin",
-                "Haifa",
-                "Jaffa");
+                "Iowa City",
+                "Los Angles",
+                "San Fransisco",
+                "Chicago",
+                "San Diego");
         
         memberDAO = new MemberDAO();
     }
