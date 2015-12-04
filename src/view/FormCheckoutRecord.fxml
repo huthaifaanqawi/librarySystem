@@ -45,8 +45,8 @@
             </Text>
             <Label text="Member" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
             <Label text="Book" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <ChoiceBox fx:id="member" prefHeight="26.0" prefWidth="185.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
-            <ChoiceBox fx:id="book" prefHeight="26.0" prefWidth="228.0" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
+            <ComboBox fx:id="member" onAction="#handleMemberFilterAction" prefHeight="26.0" prefWidth="185.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+            <ComboBox fx:id="book" onAction="#handleBookFilterAction" prefHeight="26.0" prefWidth="228.0" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
          </children>
       </GridPane>
       <TableView fx:id="tableView" layoutX="14.0" layoutY="100.0" onSort="#handleTableViewDoubleClickAction" prefHeight="244.0" prefWidth="580.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
