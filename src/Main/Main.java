@@ -31,6 +31,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         
+        util.log("Checking/creating data structure");
+        util.createInitialStorageDirs();
         
        SystemUser admin = new SystemUser();
         admin.setUsername("admin");
